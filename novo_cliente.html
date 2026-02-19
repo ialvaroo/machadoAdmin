@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+
+<meta charset="UTF-8">
+
+<title>Novo Cliente</title>
+
+</head>
+
+<body>
+
+
+<h2>Novo Cliente</h2>
+
+
+<input id="nome" placeholder="Nome">
+
+<input id="telefone" placeholder="Telefone">
+
+
+<button onclick="salvar()">Salvar</button>
+
+
+
+<!-- PRIMEIRO carrega biblioteca -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+
+<!-- DEPOIS seu arquivo -->
+
+<script src="js/supabase.js"></script>
+
+
+
+<script>
+
+async function salvar(){
+
+let nome=document.getElementById("nome").value.trim();
+
+let telefone=document.getElementById("telefone").value.trim();
+
+
+if(nome===""){
+
+alert("Digite o nome");
+
+return;
+
+}
+
+
+let {error}=await supabaseClient
+
+.from("clientes")
+
+.insert([
+
+{
+
+nome,
+
+telefone
+
+}
+
+]);
+
+
+if(error){
+
+console.log(error);
+
+alert("Erro ao salvar");
+
+return;
+
+}
+
+
+alert("Cliente salvo");
+
+location.href="clientes.html";
+
+}
+
+</script>
+
+
+
+</body>
+
+</html>

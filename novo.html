@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+
+<meta charset="UTF-8">
+<title>Novo Empréstimo</title>
+
+<link rel="stylesheet" href="css/style.css">
+
+<style>
+
+.desativado{
+
+opacity:0.5;
+pointer-events:none;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+
+<!-- MENU -->
+
+<div class="menu">
+
+<a href="painel.html">Painel</a>
+<a href="clientes.html">Clientes</a>
+
+</div>
+
+
+
+<h2>Novo Empréstimo</h2>
+
+
+
+<!-- PESQUISA CLIENTE -->
+
+<label>Selecionar Cliente</label>
+
+<input list="listaClientes" id="clienteInput" placeholder="Digite ou selecione">
+
+<datalist id="listaClientes"></datalist>
+
+
+
+<br><br>
+
+
+
+<label>
+
+<input type="checkbox" id="novoCheck" onchange="alternarNovoCliente()">
+
++ Novo Cliente
+
+</label>
+
+
+
+<br><br>
+
+
+
+<div id="camposCliente" class="desativado">
+
+
+<label>Nome</label>
+
+<input type="text" id="nome" disabled>
+
+
+<label>Telefone</label>
+
+<input type="text" id="telefone" disabled>
+
+
+</div>
+
+
+
+<br>
+
+
+
+<label>Valor</label>
+<input type="number" id="valor">
+
+
+<label>% Juros</label>
+<input type="number" id="percentual">
+
+
+<label>Garantia</label>
+<input type="text" id="garantia">
+
+
+<label>Vencimento</label>
+<input type="date" id="vencimento">
+
+
+<br><br>
+
+
+<button onclick="salvar()" class="btn-editar">
+
+Salvar
+
+</button>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/supabase.js"></script>
+
+
+<script>
+
+
+let clientes=[];
+let clienteSelecionado=null;
+
+
+
+// CARREGAR CLIENTES
+
+async function carregarClientes(){
+
+let {data} = await supabaseClient
+
+.from("clientes")
+
+.select("*")
+
+.order("nome",{ascending:true});
+
+
+clientes=data;
+
+
+let lista=document.getElementById("listaClientes");
+
+lista.innerHTML="";
+
+
+data.forEach(c=>{
+
+let option=document.createElement("option");
+
+option.value=c.nome;
+
+lista.appendChild(option);
+
+});
+
+}
+
+
+
+// SELECIONAR CLIENTE
+
+document.getElementById("clienteInput").addEventListener("change", function(){
+
+
+if(document.getElementById("novoCheck").checked) return;
+
+
+let nome=this.value;
+
+
+let cliente=clientes.find(c=>c.nome===nome);
+
+
+if(cliente){
+
+clienteSelecionado=cliente;
+
+document.getElementById("nome").value=cliente.nome;
+
+document.getElementById("telefone").value=cliente.telefone || "";
+
+}
+
+});
+
+
+
+
+// CHECKBOX NOVO CLIENTE
+
+function alternarNovoCliente(){
+
+
+let check=document.getElementById("novoCheck");
+
+let campos=document.getElementById("camposCliente");
+
+let nome=document.getElementById("nome");
+
+let telefone=document.getElementById("telefone");
+
+
+if(check.checked){
+
+campos.classList.remove("desativado");
+
+nome.disabled=false;
+
+telefone.disabled=false;
+
+nome.value="";
+telefone.value="";
+
+clienteSelecionado=null;
+
+}
+
+
+else{
+
+campos.classList.add("desativado");
+
+nome.disabled=true;
+
+telefone.disabled=true;
+
+nome.value="";
+telefone.value="";
+
+}
+
+}
+
+
+
+
+
+// SALVAR
+
+async function salvar(){
+
+
+let novo=document.getElementById("novoCheck").checked;
+
+
+let nome=document.getElementById("nome").value.trim();
+
+let telefone=document.getElementById("telefone").value.trim();
+
+let valor=parseFloat(document.getElementById("valor").value);
+
+let percentual=parseFloat(document.getElementById("percentual").value);
+
+let garantia=document.getElementById("garantia").value;
+
+let vencimento=document.getElementById("vencimento").value;
+
+
+
+let cliente_id;
+
+
+
+// NOVO CLIENTE
+
+if(novo){
+
+if(!nome){
+
+alert("Digite o nome");
+
+return;
+
+}
+
+
+let {data}=await supabaseClient
+
+.from("clientes")
+
+.insert({
+
+nome:nome,
+telefone:telefone
+
+})
+
+.select()
+
+.single();
+
+
+cliente_id=data.id;
+
+}
+
+
+
+// CLIENTE EXISTENTE
+
+else{
+
+
+if(!clienteSelecionado){
+
+alert("Selecione um cliente ou marque Novo Cliente");
+
+return;
+
+}
+
+
+cliente_id=clienteSelecionado.id;
+
+nome=clienteSelecionado.nome;
+
+telefone=clienteSelecionado.telefone;
+
+
+}
+
+
+
+
+let juros=(valor*percentual)/100;
+
+let total=valor+juros;
+
+
+
+await supabaseClient
+
+.from("emprestimos")
+
+.insert({
+
+cliente_id:cliente_id,
+
+nome:nome,
+
+valor:valor,
+
+percentual:percentual,
+
+juros:juros,
+
+valor_pago:0,
+
+total_faltante:total,
+
+garantia:garantia,
+
+vencimento:vencimento,
+
+inicio:new Date()
+
+});
+
+
+
+alert("Salvo com sucesso");
+
+location.href="index.html";
+
+
+}
+
+
+
+carregarClientes();
+
+
+</script>
+
+
+</body>
+</html>

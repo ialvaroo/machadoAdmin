@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+
+<meta charset="UTF-8">
+
+<title>Editar Cliente</title>
+
+</head>
+
+<body>
+
+<h2>Editar Cliente</h2>
+
+<input id="nome" placeholder="Nome">
+
+<input id="telefone" placeholder="Telefone">
+
+<br><br>
+
+<button onclick="salvar()">Salvar</button>
+
+
+
+<!-- biblioteca supabase -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<!-- sua conexão -->
+<script src="js/supabase.js"></script>
+
+
+
+<script>
+
+// pegar ID da URL
+
+let id = new URLSearchParams(window.location.search).get("id");
+
+
+
+// carregar dados existentes
+
+async function carregar(){
+
+
+let {data,error} = await supabaseClient
+
+.from("clientes")
+
+.select("*")
+
+.eq("id", id)
+
+.single();
+
+
+if(error){
+
+alert("Erro ao carregar cliente");
+
+console.log(error);
+
+return;
+
+}
+
+
+// preencher campos
+
+document.getElementById("nome").value = data.nome || "";
+
+document.getElementById("telefone").value = data.telefone || "";
+
+}
+
+
+
+
+
+// salvar alterações
+
+async function salvar(){
+
+
+let nome = document.getElementById("nome").value.trim();
+
+let telefone = document.getElementById("telefone").value.trim();
+
+
+if(nome===""){
+
+alert("Nome obrigatório");
+
+return;
+
+}
+
+
+let {error} = await supabaseClient
+
+.from("clientes")
+
+.update({
+
+nome: nome,
+
+telefone: telefone
+
+})
+
+.eq("id", id);
+
+
+
+if(error){
+
+alert("Erro ao atualizar");
+
+console.log(error);
+
+return;
+
+}
+
+
+alert("Cliente atualizado com sucesso");
+
+location.href="clientes.html";
+
+}
+
+
+
+// carregar automaticamente ao abrir
+
+carregar();
+
+
+</script>
+
+
+</body>
+
+</html>
