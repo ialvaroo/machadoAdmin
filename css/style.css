@@ -5,7 +5,11 @@ th{background:#333;color:white;}
 input{padding:8px;margin:5px;border-radius: 6px;font-size: 14px;border:none; border: solid #999 2px}
 
 #risco tr{
-    background-color: #ff757568;
+    background-color: #ec9a9a68;
+}
+
+#valor, #nome, #telefone, #percentual, #garantia, #vencimento{
+    padding:8px;margin:5px;border-radius: 6px;font-size: 14px;border:none; border: solid #999 2px;
 }
 
 tbody tr:hover{
@@ -20,7 +24,7 @@ transition:0.2s;
 
 
 #risco tr:hover{
-    background-color:#9d393968;
+    background-color:#ee7b7b97;
     cursor:pointer;
 }
 
@@ -147,4 +151,33 @@ button:hover{
 
 background:#0b5e0b;
 
+}
+
+.status-aberto, .status-quitado{
+  text-align: center;
+  color:green;
+  font-weight:bold;
+}
+
+
+.status-atrasado{
+  text-align: center;
+  color: orange;
+  font-weight: bold;
+}
+
+.status-risco{
+  text-align: center;
+  color: red;
+  font-weight:bold;
+}
+
+.btn-vermelho{
+  background:#dc2626;
+  color:white;
+  font-weight:bold;
+}
+
+.btn-vermelho:hover{
+  background-color: #a51e1e;
 }

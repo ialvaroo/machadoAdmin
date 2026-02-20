@@ -1,105 +1,215 @@
 const urlParams = new URLSearchParams(window.location.search);
 const id = urlParams.get("id");
 
-window.emprestimoAtual = null;
-async function carregarDetalhes() {
+let emprestimoAtual = null;
+
+const inputValor = document.getElementById("valorPagamento");
+
+// 🔹 Máscara de moeda
+inputValor.addEventListener("input", function (e) {
+
+    let valor = e.target.value.replace(/\D/g, "");
+
+    valor = (Number(valor) / 100).toFixed(2);
+
+    valor = valor.replace(".", ",");
+    valor = valor.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+
+    e.target.value = "R$ " + valor;
+});
+
+// 🔹 Remove máscara para salvar no banco
+function limparMoeda(valor) {
+    if (!valor) return 0;
+
+    return Number(
+        valor
+        .replace("R$ ", "")
+        .replace(/\./g, "")
+        .replace(",", ".")
+    );
+}
+
+async function carregarEmprestimo() {
+
+  if (!id) {
+    alert("ID do empréstimo não informado.");
+    return;
+  }
 
   const { data, error } = await supabase
     .from("emprestimos")
-    .select("*, clientes(nome)")
+    .select(`
+      *,
+      clientes (
+        telefone
+      )
+    `)
     .eq("id", id)
     .single();
 
   if (error || !data) {
     alert("Erro ao carregar empréstimo");
+    console.error(error);
     return;
   }
 
-  window.emprestimoAtual = data;
+  emprestimoAtual = data;
 
-  const restante = data.valor_total - data.valor_pago;
+  const valor = Number(data.valor || 0);
+  const juros = Number(data.juros || 0);
+  const valorPago = Number(data.valor_pago || 0);
 
-  document.getElementById("detCliente").textContent = data.clientes.nome;
-  document.getElementById("detTotal").textContent = data.valor_total.toFixed(2);
-  document.getElementById("detPago").textContent = data.valor_pago.toFixed(2);
-  document.getElementById("detRestante").textContent = restante.toFixed(2);
-  document.getElementById("detJuros").textContent = data.juros;
-  document.getElementById("detData").textContent = data.data;
-  document.getElementById("detStatus").textContent = data.status;
+  const totalComJuros = valor + juros;
+  const totalFaltante = totalComJuros - valorPago;
 
-  if (data.status === "Quitado") {
-    document.getElementById("valorPagamento").disabled = true;
-    document.getElementById("quitarCheckbox").disabled = true;
-    alert("Este empréstimo já está quitado.");
+  let hoje = new Date();
+  let venc = new Date(data.vencimento);
+  let diff = (hoje - venc) / (1000 * 60 * 60 * 24);
+
+  let status = "ABERTO";
+
+  if (totalFaltante <= 0) status = "PAGO";
+  else if (diff > 60) status = "RISCO";
+  else if (diff > 0) status = "ATRASADO";
+
+  let classeStatus = "";
+  if (status === "PAGO") classeStatus = "status-quitado";
+  else if (status === "ATRASADO") classeStatus = "status-atrasado";
+  else if (status === "RISCO") classeStatus = "status-risco";
+  else classeStatus = "status-aberto";
+
+  document.getElementById("detalhesEmprestimo").innerHTML = `
+    <h3>Detalhes do Empréstimo</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>Inicio</th>
+          <th>Valor</th>
+          <th>%</th>
+          <th>Juros</th>
+          <th>Pago</th>
+          <th>Total (Faltante)</th>
+          <th>Vencimento</th>
+          <th>Telefone</th>
+          <th>Garantia</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>${data.nome}</td>
+          <td>${formatarData(data.inicio)}</td>
+          <td>${formatarMoeda(valor)}</td>
+          <td>${data.percentual}</td>
+          <td>${formatarMoeda(juros)}</td>
+          <td>${formatarMoeda(valorPago)}</td>
+          <td>${formatarMoeda(totalFaltante)}</td>
+          <td>${formatarData(data.vencimento)}</td>
+          <td>${data.clientes?.telefone || ""}</td>
+          <td>${data.garantia}</td>
+          <td class="${classeStatus}">${status}</td>
+        </tr>
+      </tbody>
+    </table>
+  `;
+}
+
+function alternarModo(){
+  const check = document.getElementById("checkQuitar");
+  const campo = document.getElementById("campoValor");
+  const input = document.getElementById("valorPagamento");
+
+  if(check.checked){
+    campo.classList.add("campo-desativado");
+    input.disabled = true;
+    input.value = "";
+  } else {
+    campo.classList.remove("campo-desativado");
+    input.disabled = false;
   }
 }
 
-document.getElementById("quitarCheckbox").addEventListener("change", function () {
+async function confirmarPagamento(){
 
-  const inputValor = document.getElementById("valorPagamento");
+  if(!emprestimoAtual){
+    alert("Empréstimo não carregado.");
+    return;
+  }
 
-  if (this.checked) {
+  const quitar = document.getElementById("checkQuitar").checked;
 
-    const restante =
-      window.emprestimoAtual.valor_total -
-      window.emprestimoAtual.valor_pago;
+  const valorBase = Number(emprestimoAtual.valor || 0);
+  const juros = Number(emprestimoAtual.juros || 0);
+  const pagoAtual = Number(emprestimoAtual.valor_pago || 0);
 
-    inputValor.value = restante.toFixed(2);
-    inputValor.disabled = true;
+  const totalComJuros = valorBase + juros;
+  const saldoAtual = totalComJuros - pagoAtual;
 
+  if(saldoAtual <= 0){
+    alert("Este empréstimo já está quitado.");
+    return;
+  }
+
+  let novoValorPago = pagoAtual;
+
+  if(quitar){
+    novoValorPago = totalComJuros;
   } else {
-    inputValor.disabled = false;
-    inputValor.value = "";
-  }
-});
 
-async function pagarEmprestimo() {
+    const valorInput = document.getElementById("valorPagamento").value;
+    const valorDigitado = limparMoeda(valorInput);
 
-  if (!window.emprestimoAtual) return;
+    if(valorDigitado <= 0){
+      alert("Digite um valor válido.");
+      return;
+    }
 
-  const inputValor = document.getElementById("valorPagamento");
-  const valorDigitado = parseFloat(inputValor.value);
+    if(valorDigitado > saldoAtual){
+      alert("Valor maior que o saldo restante.");
+      return;
+    }
 
-  const restante =
-    window.emprestimoAtual.valor_total -
-    window.emprestimoAtual.valor_pago;
-
-  if (!valorDigitado || valorDigitado <= 0) {
-    alert("Digite um valor válido.");
-    return;
+    novoValorPago = pagoAtual + valorDigitado;
   }
 
-  if (valorDigitado > restante) {
-    alert("Valor maior que o restante do empréstimo.");
-    return;
-  }
-
-  const novoValorPago =
-    window.emprestimoAtual.valor_pago + valorDigitado;
-
-  const novoStatus =
-    novoValorPago >= window.emprestimoAtual.valor_total
-      ? "Quitado"
-      : "Em andamento";
+  const novoSaldo = totalComJuros - novoValorPago;
 
   const { error } = await supabase
     .from("emprestimos")
     .update({
       valor_pago: novoValorPago,
-      status: novoStatus
+      total_faltante: novoSaldo,
+      status: novoSaldo <= 0 ? "QUITADO" : "ABERTO"
     })
-    .eq("id", window.emprestimoAtual.id);
+    .eq("id", id);
 
-  if (error) {
-    alert("Erro ao realizar pagamento.");
-  } else {
-    alert("Pagamento realizado com sucesso!");
-    window.location.href = "index.html";
+  if(error){
+    console.error(error);
+    alert("Erro ao registrar pagamento.");
+    return;
   }
-}
 
-function voltar() {
+  alert("Pagamento registrado com sucesso!");
   window.location.href = "index.html";
 }
 
-carregarDetalhes();
+function cancelar(){
+  window.location.href = "index.html";
+}
+
+function formatarMoeda(valor){
+  return Number(valor).toLocaleString("pt-BR", {
+    style:"currency",
+    currency:"BRL"
+  });
+}
+
+function formatarData(data){
+  if(!data) return "-";
+  let d = new Date(data);
+  return d.toLocaleDateString("pt-BR");
+}
+
+carregarEmprestimo();

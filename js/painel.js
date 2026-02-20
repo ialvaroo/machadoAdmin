@@ -31,6 +31,52 @@ maximumFractionDigits: 2
 
 }
 
+function limparMoeda(valor) {
+    if (!valor) return 0;
+    return Number(
+        valor
+        .replace("R$ ", "")
+        .replace(/\./g, "")
+        .replace(",", ".")
+    );
+}
+
+// -------------------- NOVO CÓDIGO PARA INPUT 'valor' --------------------
+const inputValor = document.getElementById("valor");
+
+if(inputValor){
+  inputValor.addEventListener("input", function (e) {
+    let valor = e.target.value.replace(/\D/g, "");
+    if(valor === ""){
+      e.target.value = "";
+      return;
+    }
+    valor = (Number(valor) / 100).toFixed(2);
+    valor = valor.replace(".", ",");
+    valor = valor.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    e.target.value = "R$ " + valor;
+  });
+}
+
+function pegarValor() {
+  const valorInput = document.getElementById("valor").value;
+  const valorDigitado = limparMoeda(valorInput);
+  return valorDigitado;
+}
+
+function validarValor(maximo) {
+  const valor = pegarValor();
+  if(!valor || valor <= 0){
+    alert("Digite um valor válido.");
+    return false;
+  }
+  if(valor > maximo){
+    alert("Valor maior que o permitido.");
+    return false;
+  }
+  return true;
+}
+
 
 
 // carregar do banco
@@ -169,7 +215,7 @@ status="PAGO";
 
 else if(diff>60){
 
-status="RISCO DE PERDA";
+status="RISCO";
 
 }
 
@@ -179,7 +225,11 @@ status="ATRASADO";
 
 }
 
-
+let classeStatus = "";
+if (status === "PAGO") classeStatus = "status-quitado";
+else if (status === "ATRASADO") classeStatus = "status-atrasado";
+else if (status === "RISCO") classeStatus = "status-risco";
+else classeStatus = "status-aberto";
 
 
 let tr=document.createElement("tr");
@@ -217,7 +267,7 @@ tr.innerHTML=`
 
 <td>${e.garantia}</td>
 
-<td>${status}</td>
+<td class="${classeStatus}">${status}</td>
 
 <td>
 

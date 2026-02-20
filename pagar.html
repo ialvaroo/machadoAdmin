@@ -1,94 +1,143 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <title>Pagar Empréstimo</title>
-  <link rel="stylesheet" href="css/style.css">
+<meta charset="UTF-8">
+<title>Pagar Empréstimo</title>
 
-  <style>
-    .card {
-      background: white;
-      padding: 20px;
-      border-radius: 8px;
-      margin-top: 20px;
-    }
+<style>
+body{
+  font-family: Arial, sans-serif;
+  background:#f4f6f9;
+  padding:30px;
+}
 
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-bottom: 20px;
-    }
+.card{
+  background:white;
+  padding:20px;
+  border-radius:8px;
+  margin-bottom:20px;
+  box-shadow:0 2px 8px rgba(0,0,0,0.08);
+}
 
-    th, td {
-      padding: 10px;
-      border-bottom: 1px solid #eee;
-      text-align: center;
-      font-size: 14px;
-    }
+.detalhe-grid{
+  display:grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap:10px 30px;
+}
 
-    th {
-      background: #111827;
-      color: white;
-    }
+.detalhe-grid p{
+  margin:4px 0;
+}
 
-    .ofuscado {
-      opacity: 0.5;
-      pointer-events: none;
-      cursor: not-allowed;
-    }
+input[type="number"]{
+  padding:8px;
+  width:200px;
+  margin-top:5px;
+}
 
-    .acoes {
-      margin-top: 20px;
-    }
+button{
+  padding:10px 18px;
+  border:none;
+  border-radius:6px;
+  cursor:pointer;
+  margin-top:15px;
+  margin-right:10px;
+}
 
-    button {
-      padding: 8px 14px;
-      margin-right: 10px;
-      cursor: pointer;
-    }
-  </style>
+.btn-azul{
+  background:#2563eb;
+  color:white;
+}
+
+.btn-vermelho{
+  background:#dc2626;
+  color:white;
+  font-weight:bold;
+}
+
+.btn-vermelho:hover{
+  background-color: #a51e1e;
+}
+
+
+.campo-desativado{
+  opacity:0.4;
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+  margin-top:10px;
+}
+
+th, td{
+  padding:10px;
+  border-bottom:1px solid #ddd;
+  text-align:left;
+}
+
+th{
+  background:#f1f5f9;
+}
+
+.status-aberto{
+  color:green;
+  font-weight:bold;
+}
+
+.status-quitado{
+  color:green;
+  font-weight:bold;
+}
+
+.status-atrasado{
+  color: orange;
+  font-weight: bold;
+}
+
+.status-risco{
+  color: red;
+  font-weight:bold;
+}
+
+#valorPagamento{
+  padding:8px;margin:5px;border-radius: 6px;font-size: 14px;border:none; border: solid #999 2px;
+}
+
+</style>
+
 </head>
 <body>
 
-<h2>Pagamento de Empréstimo</h2>
+<h2>Pagar Empréstimo</h2>
+
+<div id="detalhesEmprestimo" class="card"></div>
 
 <div class="card">
 
-  <h3>Detalhes do Empréstimo</h3>
+  <h3>Pagamento</h3>
 
-  <table>
-    <thead>
-      <tr>
-        <th>Cliente</th>
-        <th>Valor Total</th>
-        <th>Valor Pago</th>
-        <th>Restante</th>
-        <th>Juros (%)</th>
-        <th>Data</th>
-        <th>Status</th>
-      </tr>
-    </thead>
-    <tbody id="tabelaDetalhes"></tbody>
-  </table>
-
-  <hr>
-
-  <label>
-    <input type="checkbox" id="quitarCheckbox">
-    Quitar Empréstimo (Pagar tudo)
-  </label>
-
-  <br><br>
-
-  <div id="campoParcial">
-    <label>Valor para pagamento parcial:</label><br>
-    <input type="number" id="valorPagamento" step="0.01" placeholder="Digite o valor">
+  <div id="campoValor">
+    <label>Pagar parte do valor:</label>
+    <input type="text" id="valorPagamento" placeholder="R$ 0,00">
   </div>
 
-  <div class="acoes">
-    <button onclick="pagarEmprestimo()">Confirmar Pagamento</button>
-    <button onclick="voltar()">Cancelar</button>
+  <br>
+
+  <div>
+    <input type="checkbox" id="checkQuitar" onchange="alternarModo()">
+    <label for="checkQuitar"><strong>Quitar empréstimo</strong></label>
   </div>
+
+  <br>
+
+  <button onclick="confirmarPagamento()" class="btn-azul">
+    Confirmar Pagamento
+  </button>
+
+  <button onclick="cancelar()" class="btn-vermelho">
+    Cancelar
+  </button>
 
 </div>
 

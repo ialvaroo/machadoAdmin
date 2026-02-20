@@ -16,6 +16,8 @@ pointer-events:none;
 
 }
 
+
+
 </style>
 
 </head>
@@ -56,7 +58,7 @@ pointer-events:none;
 
 <input type="checkbox" id="novoCheck" onchange="alternarNovoCliente()">
 
-+ Novo Cliente
+Novo Cliente
 
 </label>
 
@@ -88,7 +90,7 @@ pointer-events:none;
 
 
 <label>Valor</label>
-<input type="number" id="valor">
+<input type="text" id="valor" placeholder="R$ 0,00">
 
 
 <label>% Juros</label>
@@ -106,16 +108,13 @@ pointer-events:none;
 <br><br>
 
 
-<button onclick="salvar()" class="btn-editar">
+<button onclick="salvar()" class="btn-editar">Salvar</button>
 
-Salvar
-
-</button>
-
-
+<button onclick="cancelar()" class="btn-vermelho">Cancelar</button>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="js/supabase.js"></script>
+<script src="js/novo.js"></script>
 
 
 <script>
@@ -376,6 +375,9 @@ carregarClientes();
 
 </script>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/supabase.js"></script>
+<script src="js/novo.js"></script>
 
 </body>
 </html>
