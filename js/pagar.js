@@ -1,65 +1,105 @@
-let id=new URLSearchParams(location.search).get("id");
+const urlParams = new URLSearchParams(window.location.search);
+const id = urlParams.get("id");
 
-async function salvarPagamento(){
+window.emprestimoAtual = null;
+async function carregarDetalhes() {
 
-let valor=parseFloat(document.getElementById("valor").value);
+  const { data, error } = await supabase
+    .from("emprestimos")
+    .select("*, clientes(nome)")
+    .eq("id", id)
+    .single();
 
-let {data}=await supabaseClient
+  if (error || !data) {
+    alert("Erro ao carregar empréstimo");
+    return;
+  }
 
-.from("emprestimos")
+  window.emprestimoAtual = data;
 
-.select("*")
+  const restante = data.valor_total - data.valor_pago;
 
-.eq("id",id)
+  document.getElementById("detCliente").textContent = data.clientes.nome;
+  document.getElementById("detTotal").textContent = data.valor_total.toFixed(2);
+  document.getElementById("detPago").textContent = data.valor_pago.toFixed(2);
+  document.getElementById("detRestante").textContent = restante.toFixed(2);
+  document.getElementById("detJuros").textContent = data.juros;
+  document.getElementById("detData").textContent = data.data;
+  document.getElementById("detStatus").textContent = data.status;
 
-.single();
-
-let pago=data.valor_pago+valor;
-
-let faltante=data.total_faltante-valor;
-
-let status="aberto";
-
-if(faltante<=0){
-
-status="pago";
-
-faltante=0;
-
+  if (data.status === "Quitado") {
+    document.getElementById("valorPagamento").disabled = true;
+    document.getElementById("quitarCheckbox").disabled = true;
+    alert("Este empréstimo já está quitado.");
+  }
 }
 
-await supabaseClient
+document.getElementById("quitarCheckbox").addEventListener("change", function () {
 
-.from("emprestimos")
+  const inputValor = document.getElementById("valorPagamento");
 
-.update({
+  if (this.checked) {
 
-valor_pago:pago,
+    const restante =
+      window.emprestimoAtual.valor_total -
+      window.emprestimoAtual.valor_pago;
 
-total_faltante:faltante,
+    inputValor.value = restante.toFixed(2);
+    inputValor.disabled = true;
 
-status:status
-
-})
-
-.eq("id",id);
-
-await supabaseClient
-
-.from("pagamentos")
-
-.insert({
-
-emprestimo_id:id,
-
-valor:valor,
-
-data:new Date()
-
+  } else {
+    inputValor.disabled = false;
+    inputValor.value = "";
+  }
 });
 
-alert("Pagamento realizado");
+async function pagarEmprestimo() {
 
-location.href="index.html";
+  if (!window.emprestimoAtual) return;
 
+  const inputValor = document.getElementById("valorPagamento");
+  const valorDigitado = parseFloat(inputValor.value);
+
+  const restante =
+    window.emprestimoAtual.valor_total -
+    window.emprestimoAtual.valor_pago;
+
+  if (!valorDigitado || valorDigitado <= 0) {
+    alert("Digite um valor válido.");
+    return;
+  }
+
+  if (valorDigitado > restante) {
+    alert("Valor maior que o restante do empréstimo.");
+    return;
+  }
+
+  const novoValorPago =
+    window.emprestimoAtual.valor_pago + valorDigitado;
+
+  const novoStatus =
+    novoValorPago >= window.emprestimoAtual.valor_total
+      ? "Quitado"
+      : "Em andamento";
+
+  const { error } = await supabase
+    .from("emprestimos")
+    .update({
+      valor_pago: novoValorPago,
+      status: novoStatus
+    })
+    .eq("id", window.emprestimoAtual.id);
+
+  if (error) {
+    alert("Erro ao realizar pagamento.");
+  } else {
+    alert("Pagamento realizado com sucesso!");
+    window.location.href = "index.html";
+  }
 }
+
+function voltar() {
+  window.location.href = "index.html";
+}
+
+carregarDetalhes();
