@@ -78,13 +78,6 @@ return;
 
 }
 
-if(telefone === ""){
-
-alert("Digite o telefone");
-
-return;
-
-}
 
 }
 
