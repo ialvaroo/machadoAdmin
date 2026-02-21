@@ -238,7 +238,7 @@ let tr=document.createElement("tr");
 
 tr.onclick=()=>{
 
-location.href="cliente.html?id="+e.cliente_id;
+location.href="cliente.html?id="+e.cliente_id+"&origem=index.html";
 
 };
 

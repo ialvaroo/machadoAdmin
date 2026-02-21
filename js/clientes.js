@@ -55,7 +55,7 @@ let tr=document.createElement("tr");
 
 tr.onclick=()=>{
 
-location.href="cliente.html?id="+cliente.id;
+location.href="cliente.html?id="+cliente.id+"&origem=clientes.html";
 
 };
 

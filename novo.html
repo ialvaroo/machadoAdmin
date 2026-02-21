@@ -182,47 +182,72 @@ document.getElementById("telefone").value=cliente.telefone || "";
 
 function alternarNovoCliente(){
 
+let check = document.getElementById("novoCheck");
 
-let check=document.getElementById("novoCheck");
+let campos = document.getElementById("camposCliente");
 
-let campos=document.getElementById("camposCliente");
+let nome = document.getElementById("nome");
 
-let nome=document.getElementById("nome");
+let telefone = document.getElementById("telefone");
 
-let telefone=document.getElementById("telefone");
+let clienteInput = document.getElementById("clienteInput");
+
 
 
 if(check.checked){
 
+// desbloqueia nome e telefone
+
 campos.classList.remove("desativado");
 
-nome.disabled=false;
+nome.disabled = false;
 
-telefone.disabled=false;
+telefone.disabled = false;
 
-nome.value="";
-telefone.value="";
 
-clienteSelecionado=null;
+// bloqueia selecionar cliente
+
+clienteInput.disabled = true;
+
+clienteInput.value = "";
+
+
+// limpa campos
+
+nome.value = "";
+
+telefone.value = "";
+
+clienteSelecionado = null;
 
 }
 
 
 else{
 
+// bloqueia nome e telefone
+
 campos.classList.add("desativado");
 
-nome.disabled=true;
+nome.disabled = true;
 
-telefone.disabled=true;
+telefone.disabled = true;
 
-nome.value="";
-telefone.value="";
+
+// desbloqueia selecionar cliente
+
+clienteInput.disabled = false;
+
+
+// limpa
+
+nome.value = "";
+
+telefone.value = "";
 
 }
 
 }
-
 
 
 

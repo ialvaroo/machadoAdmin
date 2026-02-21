@@ -51,67 +51,154 @@ return valor;
 
 async function salvar(){
 
-let nome=document.getElementById("nome").value;
+let novo = document.getElementById("novoCheck").checked;
 
-let valor=obterValorNumerico();
+let nome = document.getElementById("nome").value.trim();
 
-let perc=parseFloat(document.getElementById("percentual").value);
+let telefone = document.getElementById("telefone").value.trim();
 
-let juros=valor*(perc/100);
+let valor = obterValorNumerico();
 
-let total=valor+juros;
+let percentual = parseFloat(document.getElementById("percentual").value);
 
-let venc=document.getElementById("vencimento").value;
+let vencimento = document.getElementById("vencimento").value;
 
-let garantia=document.getElementById("garantia").value;
-
-
-
-let {data:cliente}=await supabaseClient
-
-.from("clientes")
-
-.select("*")
-
-.eq("nome",nome)
-
-.single();
+let garantia = document.getElementById("garantia").value;
 
 
+// VALIDAÇÕES
 
-if(!cliente){
+if(novo){
 
-let novo=await supabaseClient
+if(nome === ""){
 
-.from("clientes")
+alert("Digite o nome do cliente");
 
-.insert({nome:nome})
+return;
 
-.select()
+}
 
-.single();
+if(telefone === ""){
 
-cliente=novo.data;
+alert("Digite o telefone");
+
+return;
+
+}
+
+}
+
+
+if(!novo && !clienteSelecionado){
+
+alert("Selecione um cliente");
+
+return;
+
+}
+
+
+if(!valor || valor <= 0){
+
+alert("Digite o valor do empréstimo");
+
+return;
+
+}
+
+
+if(!percentual || percentual <= 0){
+
+alert("Digite o juros (%)");
+
+return;
+
+}
+
+
+if(!vencimento){
+
+alert("Selecione a data de vencimento");
+
+return;
 
 }
 
 
 
-await supabaseClient
+// DEFINIR CLIENTE
+
+let cliente_id;
+
+
+if(novo){
+
+let {data,error} = await supabaseClient
+
+.from("clientes")
+
+.insert({
+
+nome:nome,
+
+telefone:telefone
+
+})
+
+.select()
+
+.single();
+
+
+if(error){
+
+alert("Erro ao salvar cliente");
+
+return;
+
+}
+
+
+cliente_id = data.id;
+
+}
+
+
+else{
+
+cliente_id = clienteSelecionado.id;
+
+nome = clienteSelecionado.nome;
+
+telefone = clienteSelecionado.telefone;
+
+}
+
+
+
+// CALCULAR
+
+let juros = (valor * percentual) / 100;
+
+let total = valor + juros;
+
+
+
+// SALVAR
+
+let {error} = await supabaseClient
 
 .from("emprestimos")
 
 .insert({
 
-cliente_id:cliente.id,
+cliente_id:cliente_id,
 
 nome:nome,
 
-inicio:new Date(),
-
 valor:valor,
 
-percentual:perc,
+percentual:percentual,
 
 juros:juros,
 
@@ -119,17 +206,29 @@ valor_pago:0,
 
 total_faltante:total,
 
-vencimento:venc,
-
 garantia:garantia,
 
-status:"aberto"
+vencimento:vencimento,
+
+inicio:new Date(),
+
+status:"ABERTO"
 
 });
 
 
+if(error){
 
-alert("Salvo");
+alert("Erro ao salvar empréstimo");
+
+console.log(error);
+
+return;
+
+}
+
+
+alert("Empréstimo salvo com sucesso");
 
 location.href="index.html";
 
