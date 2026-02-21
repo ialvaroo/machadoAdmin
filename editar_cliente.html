@@ -3,22 +3,47 @@
 <head>
 
 <meta charset="UTF-8">
-
 <title>Editar Cliente</title>
+
+<link rel="stylesheet" href="css/style.css">
 
 </head>
 
 <body>
 
+
 <h2>Editar Cliente</h2>
 
-<input id="nome" placeholder="Nome">
 
-<input id="telefone" placeholder="Telefone">
+
+<label>Nome</label>
+<input type="text" id="nome" placeholder="Digite o nome">
+
+
+
+<label>Telefone</label>
+<input type="text" id="telefone" placeholder="Digite o telefone">
+
+
 
 <br><br>
 
-<button onclick="salvar()">Salvar</button>
+
+
+<button onclick="salvar()" class="btn-pagar">
+
+Salvar
+
+</button>
+
+
+
+<button onclick="cancelar()" class="btn-vermelho">
+
+Cancelar
+
+</button>
+
 
 
 
@@ -32,13 +57,26 @@
 
 <script>
 
+
 // pegar ID da URL
 
 let id = new URLSearchParams(window.location.search).get("id");
 
 
 
-// carregar dados existentes
+
+// cancelar
+
+function cancelar(){
+
+location.href="clientes.html";
+
+}
+
+
+
+
+// carregar dados
 
 async function carregar(){
 
@@ -54,6 +92,7 @@ let {data,error} = await supabaseClient
 .single();
 
 
+
 if(error){
 
 alert("Erro ao carregar cliente");
@@ -65,7 +104,6 @@ return;
 }
 
 
-// preencher campos
 
 document.getElementById("nome").value = data.nome || "";
 
@@ -77,7 +115,7 @@ document.getElementById("telefone").value = data.telefone || "";
 
 
 
-// salvar alterações
+// salvar
 
 async function salvar(){
 
@@ -87,6 +125,7 @@ let nome = document.getElementById("nome").value.trim();
 let telefone = document.getElementById("telefone").value.trim();
 
 
+
 if(nome===""){
 
 alert("Nome obrigatório");
@@ -94,6 +133,7 @@ alert("Nome obrigatório");
 return;
 
 }
+
 
 
 let {error} = await supabaseClient
@@ -123,6 +163,7 @@ return;
 }
 
 
+
 alert("Cliente atualizado com sucesso");
 
 location.href="clientes.html";
@@ -131,14 +172,12 @@ location.href="clientes.html";
 
 
 
-// carregar automaticamente ao abrir
-
 carregar();
 
 
 </script>
 
 
-</body>
 
+</body>
 </html>

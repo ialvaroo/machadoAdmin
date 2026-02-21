@@ -25,17 +25,6 @@ pointer-events:none;
 <body>
 
 
-<!-- MENU -->
-
-<div class="menu">
-
-<a href="painel.html">Painel</a>
-<a href="clientes.html">Clientes</a>
-
-</div>
-
-
-
 <h2>Novo Empréstimo</h2>
 
 
@@ -93,22 +82,22 @@ Novo Cliente
 <input type="text" id="valor" placeholder="R$ 0,00">
 
 
-<label>% Juros</label>
-<input type="number" id="percentual">
+<label>Juros (%)</label>
+<input type="number" id="percentual" placeholder="Digite apenas números">
 
 
 <label>Garantia</label>
-<input type="text" id="garantia">
+<input type="text" id="garantia" placeholder="Cartão, cheque, etc">
 
 
 <label>Vencimento</label>
-<input type="date" id="vencimento">
+<input type="date" id="vencimento" >
 
 
 <br><br>
 
 
-<button onclick="salvar()" class="btn-editar">Salvar</button>
+<button onclick="salvar()" class="btn-pagar">Salvar</button>
 
 <button onclick="cancelar()" class="btn-vermelho">Cancelar</button>
 

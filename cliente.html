@@ -1,12 +1,187 @@
-<html>
+<!DOCTYPE html>
+<html lang="pt-br">
+
 <head>
+
+<meta charset="UTF-8">
+
+<title>Histórico do Cliente</title>
+
 <link rel="stylesheet" href="css/style.css">
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+
+<style>
+
+body{
+  font-family: Arial, sans-serif;
+  background:#f4f6f9;
+  padding:30px;
+}
+
+
+.card{
+  background:white;
+  padding:20px;
+  border-radius:8px;
+  margin-bottom:20px;
+  box-shadow:0 2px 8px rgba(0,0,0,0.08);
+}
+
+
+table{
+  width:100%;
+  border-collapse:collapse;
+  margin-top:10px;
+}
+
+
+th, td{
+  padding:10px;
+  border-bottom:1px solid #ddd;
+}
+
+
+th{
+  background:#333;
+}
+
+
+.status-aberto{
+  color:green;
+  font-weight:bold;
+}
+
+
+.status-quitado{
+  color:green;
+  font-weight:bold;
+}
+
+
+.status-atrasado{
+  color: orange;
+  font-weight: bold;
+}
+
+
+.status-risco{
+  color: red;
+  font-weight:bold;
+}
+
+
+button{
+  padding:10px 18px;
+  border:none;
+  border-radius:6px;
+  cursor:pointer;
+  margin-top:15px;
+  margin-right:10px;
+}
+
+
+.btn-vermelho{
+  background:#dc2626;
+  color:white;
+}
+
+
+.btn-vermelho:hover{
+  background:#a51e1e;
+}
+
+
+</style>
+
 </head>
+
+
 <body>
-<h2>Historico</h2>
-<table id="hist"></table>
+
+
+
+<h2>Histórico do Cliente</h2>
+
+<div class="card" id="infoCliente">
+
+<h3>Dados do Cliente</h3>
+
+<p><strong>Nome:</strong> <span id="clienteNome">...</span>
+
+<strong>Telefone:</strong> <span id="clienteTelefone">...</span></p>
+
+</div>
+
+
+<div class="card">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>Início</th>
+
+<th>Valor</th>
+
+<th>%</th>
+
+<th>Juros</th>
+
+<th>Pago</th>
+
+<th>Faltante</th>
+
+<th>Vencimento</th>
+
+<th>Garantia</th>
+
+<th>Status</th>
+
+<th>Ação</th>
+
+</tr>
+
+</thead>
+
+
+<tbody id="hist"></tbody>
+
+
+</table>
+
+
+<button onclick="voltar()" class="btn-vermelho">
+
+Voltar
+
+</button>
+
+
+</div>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <script src="js/supabase.js"></script>
+
 <script src="js/cliente.js"></script>
+
+
+
+<script>
+
+function voltar(){
+
+window.location.href="clientes.html";
+
+}
+
+</script>
+
+
+
 </body>
+
 </html>

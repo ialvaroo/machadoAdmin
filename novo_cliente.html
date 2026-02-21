@@ -3,8 +3,9 @@
 <head>
 
 <meta charset="UTF-8">
-
 <title>Novo Cliente</title>
+
+<link rel="stylesheet" href="css/style.css">
 
 </head>
 
@@ -14,33 +15,56 @@
 <h2>Novo Cliente</h2>
 
 
-<input id="nome" placeholder="Nome">
-
-<input id="telefone" placeholder="Telefone">
-
-
-<button onclick="salvar()">Salvar</button>
+<label>Nome</label>
+<input type="text" id="nome" placeholder="Digite o nome">
 
 
+<label>Telefone</label>
+<input type="text" id="telefone" placeholder="Digite o telefone">
 
-<!-- PRIMEIRO carrega biblioteca -->
+
+<br><br>
+
+
+<button onclick="salvar()" class="btn-pagar">
+
+Salvar
+
+</button>
+
+
+<button onclick="cancelar()" class="btn-vermelho">
+
+Cancelar
+
+</button>
+
+
+
+<!-- SUPABASE -->
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-
-<!-- DEPOIS seu arquivo -->
-
 <script src="js/supabase.js"></script>
 
 
 
 <script>
 
+
+function cancelar(){
+
+location.href="clientes.html";
+
+}
+
+
+
 async function salvar(){
 
 let nome=document.getElementById("nome").value.trim();
 
 let telefone=document.getElementById("telefone").value.trim();
+
 
 
 if(nome===""){
@@ -50,6 +74,7 @@ alert("Digite o nome");
 return;
 
 }
+
 
 
 let {error}=await supabaseClient
@@ -80,16 +105,17 @@ return;
 }
 
 
-alert("Cliente salvo");
+
+alert("Cliente salvo com sucesso");
 
 location.href="clientes.html";
 
 }
+
 
 </script>
 
 
 
 </body>
-
 </html>
