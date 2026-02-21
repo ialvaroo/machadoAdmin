@@ -1,183 +1,501 @@
-body{font-family:Arial;background:#f4f4f4;margin:0;padding:20px;}
-table{width:100%;background:white;border-collapse:collapse;}
-th,td{padding:10px;border:1px solid #ccc;}
-th{background:#333;color:white;}
-input{padding:8px;margin:5px;border-radius: 6px;font-size: 14px;border:none; border: solid #999 2px}
+/* ================================= */
+/* RESET */
+/* ================================= */
 
-#risco tr{
-    background-color: #ec9a9a68;
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
 }
 
-#valor, #nome, #telefone, #percentual, #garantia, #vencimento{
-    padding:8px;margin:5px;border-radius: 6px;font-size: 14px;border:none; border: solid #999 2px;
+body{
+
+font-family:"Segoe UI",Arial,sans-serif;
+
+background:#f4f6f9;
+
+padding:30px;
+
+color:#1e293b;
+
 }
 
-tbody tr:hover{
 
-background-color:#9a9ea63c;
 
-cursor:pointer;
+/* ================================= */
+/* TITULOS */
+/* ================================= */
+
+h2{
+
+margin-bottom:20px;
+
+font-size:26px;
+
+font-weight:600;
+
+color:#0f172a;
+
+}
+
+
+h3{
+
+margin-bottom:15px;
+
+color:#0f172a;
+
+}
+
+
+
+/* ================================= */
+/* CARD */
+/* ================================= */
+
+.card{
+
+background:white;
+
+padding:25px;
+
+border-radius:10px;
+
+margin-bottom:20px;
+
+box-shadow:0 4px 12px rgba(0,0,0,0.08);
+
+}
+
+
+
+/* ================================= */
+/* GRID DETALHES (PAGAR.HTML) */
+/* ================================= */
+
+.detalhe-grid{
+
+display:grid;
+
+grid-template-columns:repeat(2,1fr);
+
+gap:10px 30px;
+
+}
+
+
+.detalhe-grid p{
+
+margin:4px 0;
+
+}
+
+
+
+/* ================================= */
+/* LABEL */
+/* ================================= */
+
+label{
+
+display:block;
+
+margin-top:15px;
+
+margin-bottom:5px;
+
+font-weight:500;
+
+}
+
+
+
+/* ================================= */
+/* INPUT */
+/* ================================= */
+
+input{
+
+width:100%;
+
+padding:10px;
+
+border-radius:6px;
+
+border:1px solid #cbd5e1;
+
+font-size:15px;
+
+background:white;
 
 transition:0.2s;
 
 }
 
 
-#risco tr:hover{
-    background-color:#ee7b7b97;
-    cursor:pointer;
-}
+input:focus{
 
+outline:none;
 
+border-color:#2563eb;
 
-/* centralizar telefone (2ª coluna) */
-
-#tabelaClientes td:nth-child(2),
-#tabelaClientes th:nth-child(2){
-
-text-align:center;
+box-shadow:0 0 0 2px rgba(37,99,235,0.2);
 
 }
 
 
-/* centralizar ações (3ª coluna) */
+input:disabled{
 
-#tabelaClientes td:nth-child(3),
-#tabelaClientes th:nth-child(3){
+background:#e2e8f0;
 
-text-align:center;
+cursor:not-allowed;
+
+}
+
+.linha-checkbox{
+
+display:flex;
+
+align-items:center;
+
+gap:8px;
 
 }
 
 
-
-#tabela td:nth-child(9),
-#tabela th:nth-child(9){
-
-text-align:center;
-
-}
-
-
-/* BOTÃO BASE (PADRÃO PARA TODOS) */
-
-button,
-.btn-novo-emprestimo,
-.btn-editar,
-.btn-pagar{
-    
-font-size: 14px;
-
-padding:8px 14px;
-
-border-radius:6px;
-
-text-decoration:none;
-
-font-weight:bold;
+/* CORREÇÃO PRINCIPAL */
+.label-checkbox{
 
 display:inline-block;
 
-margin-bottom:10px;
+margin:0;
+
+}
+
+
+
+
+/* ================================= */
+/* INPUT PAGAMENTO */
+/* ================================= */
+
+#valorPagamento{
+
+padding:10px;
+
+border-radius:6px;
+
+font-size:15px;
+
+border:1px solid #cbd5e1;
+
+margin-top:5px;
+
+}
+
+
+
+/* ================================= */
+/* BOTÕES */
+/* ================================= */
+
+button{
+
+padding:10px 18px;
 
 border:none;
 
+border-radius:6px;
+
 cursor:pointer;
+
+font-size:14px;
+
+font-weight:600;
+
+margin-top:15px;
+
+margin-right:10px;
+
+transition:0.2s;
+
+}
+
+
+/* azul */
+
+.btn-pagar,
+.btn-editar,
+.btn-azul{
+
+background:#2563eb;
 
 color:white;
 
 }
 
 
-/* CORES ESPECÍFICAS */
+.btn-pagar:hover,
+.btn-editar:hover,
+.btn-azul:hover{
 
-
-/* novo emprestimo */
-
-.btn-novo-emprestimo{
-
-background:#007bff;
-
-}
-
-.btn-novo-emprestimo:hover{
-
-background:#0056b3;
+background:#1d4ed8;
 
 }
 
 
 
-/* editar */
+/* vermelho */
 
-.btn-editar{
+.btn-vermelho{
 
-background:#007bff;
+background:#dc2626;
 
-}
-
-.btn-editar:hover{
-
-background:#0056b3;
+color:white;
 
 }
 
 
-/* pagar */
+.btn-vermelho:hover{
 
-.btn-pagar{
-
-background:green;
-
-}
-
-.btn-pagar:hover{
-
-background:#0b5e0b;
+background:#b91c1c;
 
 }
 
 
 
-/* botão padrão (se existir) */
+/* verde */
 
-button{
+.btn-verde{
 
-background: green;
+background:#16a34a;
 
-}
-
-button:hover{
-
-background:#0b5e0b;
+color:white;
 
 }
 
-.status-aberto, .status-quitado{
-  text-align: center;
-  color:green;
-  font-weight:bold;
+
+.btn-verde:hover{
+
+background:#15803d;
+
+}
+
+/* ================================= */
+/* BOTÕES LINK (A) */
+/* ================================= */
+
+a.btn-azul,
+a.btn-vermelho,
+a.btn-verde{
+
+display:inline-block;
+
+padding:10px 18px;
+
+border-radius:6px;
+
+font-size:14px;
+
+font-weight:600;
+
+text-decoration:none;
+
+margin-top:15px;
+
+margin-right:10px;
+
+transition:0.2s;
+
+
+}
+
+
+/* ================================= */
+/* TABELA */
+/* ================================= */
+
+table{
+
+width:100%;
+
+border-collapse:collapse;
+
+background:white;
+
+border-radius:10px;
+
+overflow:hidden;
+
+box-shadow:0 4px 12px rgba(0,0,0,0.05);
+
+margin-top:10px;
+
+}
+
+
+th{
+
+background:#1e293b;
+
+color:white;
+
+padding:12px;
+
+text-align:left;
+
+font-size:14px;
+
+}
+
+
+td{
+
+padding:12px;
+
+border-bottom:1px solid #e2e8f0;
+
+font-size:14px;
+
+}
+
+
+tr:hover{
+
+background:#f1f5f9;
+
+}
+
+
+
+/* ================================= */
+/* STATUS */
+/* ================================= */
+
+.status-aberto{
+
+color:#16a34a;
+
+font-weight:600;
+
+}
+
+
+.status-quitado{
+
+color:#2563eb;
+
+font-weight:600;
+
 }
 
 
 .status-atrasado{
-  text-align: center;
-  color: orange;
-  font-weight: bold;
+
+color:#f59e0b;
+
+font-weight:600;
+
 }
+
 
 .status-risco{
-  text-align: center;
-  color: red;
-  font-weight:bold;
+
+color:#dc2626;
+
+font-weight:600;
+
 }
 
-.btn-vermelho{
-  background:#dc2626;
-  color:white;
-  font-weight:bold;
+
+
+/* ================================= */
+/* DESATIVADO */
+/* ================================= */
+
+.desativado{
+
+opacity:0.5;
+
+pointer-events:none;
+
 }
 
-.btn-vermelho:hover{
-  background-color: #a51e1e;
+
+.campo-desativado{
+
+opacity:0.4;
+
+}
+
+
+
+/* ================================= */
+/* CHECKBOX */
+/* ================================= */
+
+input[type="checkbox"]{
+
+width:auto;
+
+margin-right:8px;
+
+cursor:pointer;
+
+}
+
+
+
+/* ================================= */
+/* DATA */
+/* ================================= */
+
+input[type="date"]{
+
+cursor:pointer;
+
+}
+
+
+
+/* ================================= */
+/* PESQUISA */
+/* ================================= */
+
+#pesquisaCliente, #pesquisa{
+
+margin-bottom:15px;
+
+}
+
+
+
+/* ================================= */
+/* RESPONSIVO */
+/* ================================= */
+
+@media(max-width:768px){
+
+body{
+
+padding:15px;
+
+}
+
+
+table{
+
+font-size:12px;
+
+}
+
+
+button{
+
+width:100%;
+
+margin-top:10px;
+
+}
+
 }

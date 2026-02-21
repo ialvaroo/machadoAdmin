@@ -3,109 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Pagar Empréstimo</title>
-
-<style>
-body{
-  font-family: Arial, sans-serif;
-  background:#f4f6f9;
-  padding:30px;
-}
-
-.card{
-  background:white;
-  padding:20px;
-  border-radius:8px;
-  margin-bottom:20px;
-  box-shadow:0 2px 8px rgba(0,0,0,0.08);
-}
-
-.detalhe-grid{
-  display:grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap:10px 30px;
-}
-
-.detalhe-grid p{
-  margin:4px 0;
-}
-
-input[type="number"]{
-  padding:8px;
-  width:200px;
-  margin-top:5px;
-}
-
-button{
-  padding:10px 18px;
-  border:none;
-  border-radius:6px;
-  cursor:pointer;
-  margin-top:15px;
-  margin-right:10px;
-}
-
-.btn-azul{
-  background:#2563eb;
-  color:white;
-}
-
-.btn-vermelho{
-  background:#dc2626;
-  color:white;
-  font-weight:bold;
-}
-
-.btn-vermelho:hover{
-  background-color: #a51e1e;
-}
-
-
-.campo-desativado{
-  opacity:0.4;
-}
-
-table{
-  width:100%;
-  border-collapse:collapse;
-  margin-top:10px;
-}
-
-th, td{
-  padding:10px;
-  border-bottom:1px solid #ddd;
-  text-align:left;
-}
-
-th{
-  color: #fff;
-  background:#333;
-}
-
-.status-aberto{
-  color:green;
-  font-weight:bold;
-}
-
-.status-quitado{
-  color:green;
-  font-weight:bold;
-}
-
-.status-atrasado{
-  color: orange;
-  font-weight: bold;
-}
-
-.status-risco{
-  color: red;
-  font-weight:bold;
-}
-
-#valorPagamento{
-  padding:8px;margin:5px;border-radius: 6px;font-size: 14px;border:none; border: solid #999 2px;
-}
-
-</style>
+<link rel="stylesheet" href="css/style.css">
 
 </head>
 <body>
@@ -125,10 +23,12 @@ th{
 
   <br>
 
-  <div>
-    <input type="checkbox" id="checkQuitar" onchange="alternarModo()">
-    <label for="checkQuitar"><strong>Quitar empréstimo</strong></label>
-  </div>
+<div class="linha-checkbox">
+<input type="checkbox" id="checkQuitar" onchange="alternarModo()">
+<label for="checkQuitar" class="label-checkbox">
+<strong>Quitar empréstimo</strong>
+</label>
+</div>
 
   <br>
 
