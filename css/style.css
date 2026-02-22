@@ -20,6 +20,12 @@ color:#1e293b;
 
 }
 
+html{
+
+-webkit-text-size-adjust:100%;
+
+}
+
 /* ================================= */
 /* TOPO DO SISTEMA */
 /* ================================= */
@@ -658,7 +664,7 @@ overflow-x:auto;
 /* MOBILE */
 /* ================================= */
 
-@media(max-width:768px){
+@media screen and (max-width:768px){
 
 body{
 
