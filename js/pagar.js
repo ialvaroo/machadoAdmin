@@ -196,7 +196,19 @@ async function confirmarPagamento(){
 }
 
 function cancelar(){
-  window.location.href = "index.html";
+
+let origem = new URLSearchParams(window.location.search).get("origem");
+
+if(origem){
+
+window.location.href = origem;
+
+}else{
+
+window.location.href = "index.html";
+
+
+};
 }
 
 function formatarMoeda(valor){

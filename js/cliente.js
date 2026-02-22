@@ -26,7 +26,7 @@ return new Date(data).toLocaleDateString("pt-BR");
 
 function pagar(id){
 
-location.href="pagar.html?id="+id;
+location.href="pagar.html?id="+id+"&origem=clientes.html";
 
 }
 
@@ -157,13 +157,15 @@ t.innerHTML += `
 
 ${faltante > 0 ? 
 
-`<button onclick="pagar(${e.id})" class="btn-azul">
+
+    
+`<button class="btn-verde" onclick="event.stopPropagation(); pagar('${e.id}')">
 Pagar
 </button>`
 
 :
 
-`<span style="color:#16a34a;font-weight:bold;">-</span>`
+`<span style="color:#16a34a;; font-weight:bold;">-</span>`
 
 }
 
@@ -177,6 +179,7 @@ Pagar
 
 
 }
+
 
 
 carregarCliente();

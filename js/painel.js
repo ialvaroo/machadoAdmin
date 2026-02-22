@@ -347,7 +347,7 @@ renderizar(listaEmprestimos);
 
 function pagar(id){
 
-location.href="pagar.html?id="+id;
+location.href="pagar.html?id="+id+"&origem=index.html";
 
 }
 
