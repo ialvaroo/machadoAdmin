@@ -654,7 +654,6 @@ overflow-x:auto;
 }
 
 
-
 /* ================================= */
 /* MOBILE */
 /* ================================= */
@@ -663,13 +662,65 @@ overflow-x:auto;
 
 body{
 
-padding:10px;
+padding:12px;
+
+font-size:16px;
 
 }
+
+
+/* LOGO */
 
 .logo{
-width: 50vw;
+
+font-size:22px;
+
+width:60vw;
+
 }
+
+
+/* TITULOS */
+
+h2{
+
+font-size:22px;
+
+padding-left:10px;
+
+}
+
+
+h3{
+
+font-size:18px;
+
+padding-left:10px;
+
+}
+
+
+/* LABEL */
+
+label{
+
+font-size:16px;
+
+}
+
+
+/* INPUT */
+
+input{
+
+font-size:17px;
+
+padding:12px;
+
+width:100%;
+
+}
+
 
 /* BOTÕES */
 
@@ -678,38 +729,61 @@ a.btn-azul,
 a.btn-vermelho,
 a.btn-verde{
 
+font-size:16px;
+
+padding:14px;
+
 width:100%;
-max-width:100%;
-
-}
-
-
-
-/* PESQUISA */
-
-#pesquisa{
 
 max-width:100%;
 
 }
-
 
 
 /* TABELA */
 
 table{
 
-font-size:13px;
+font-size:15px;
 
 }
 
+
+th{
+
+font-size:15px;
+
+padding:10px;
+
+}
+
+
+td{
+
+font-size:15px;
+
+padding:10px;
+
+}
+
+
+/* PESQUISA */
+
+#pesquisa,
+#pesquisaCliente{
+
+font-size:16px;
+
+padding:12px;
+
+}
 
 
 /* CARD */
 
 .card{
 
-padding:15px;
+padding:18px;
 
 }
 
