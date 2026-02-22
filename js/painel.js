@@ -271,13 +271,13 @@ tr.innerHTML=`
 
 <td style="text-align: center;">
 
-<button class="btn-verde" onclick="event.stopPropagation(); pagar('${e.id}')">
+<button class="btn-pagar" onclick="event.stopPropagation(); pagar('${e.id}')">
 
 Pagar
 
 </button>
 
-<button class="btn-azul" onclick="event.stopPropagation(); editar('${e.id}')">
+<button class="btn-editar" onclick="event.stopPropagation(); editar('${e.id}')">
 
 Editar
 

@@ -32,7 +32,6 @@ html{
 
 .topo{
 
-
 display:flex;
 
 justify-content:space-between;
@@ -79,6 +78,7 @@ align-items:center;
 gap:10px;
 
 }
+
 
 
 
@@ -299,50 +299,42 @@ border:2px solid;
 
 }
 
-
 /* ================================= */
-/* AZUL */
+/* EDITAR - AZUL */
 /* ================================= */
 
-.btn-pagar,
 .btn-editar,
 .btn-azul{
 
 color:#2563eb;
-
 border-color:#2563eb;
 
 }
 
-
-.btn-pagar:hover,
 .btn-editar:hover,
 .btn-azul:hover{
 
 background:#2563eb;
-
 color:white;
 
 }
 
 
 /* ================================= */
-/* VERDE */
+/* PAGAR - VERDE */
 /* ================================= */
 
-.btn-verde{
+.btn-verde, .btn-pagar{
 
 color:#16a34a;
-
 border-color:#16a34a;
 
 }
 
-
-.btn-verde:hover{
+.btn-verde:hover, 
+.btn-pagar:hover{
 
 background:#16a34a;
-
 color:white;
 
 }
@@ -805,14 +797,14 @@ overflow-x:auto;
 
 table{
 
-font-size:12px;
+font-size:10px;
 
 }
 
 
 th{
 
-font-size:12px;
+font-size:10px;
 padding:5px;
 
 }
@@ -820,8 +812,8 @@ padding:5px;
 
 td{
 
-font-size:12px;
-padding:5px;
+font-size:10px;
+padding:3px;
 
 }
 
@@ -834,5 +826,65 @@ grid-template-columns:1fr;
 gap:4px;
 
 }
+
+}
+
+/* ================================= */
+/* MOBILE EM PÉ (PORTRAIT) */
+/* ================================= */
+
+@media screen and (max-width:768px) and (orientation:portrait){
+
+/* BOTÕES MAIS COMPACTOS */
+
+button,
+a.btn-azul,
+a.btn-verde{
+
+font-size:12px;
+padding:7px 15px;
+border-radius:5px;
+margin-left: 5px;
+}
+
+
+/* BOTÕES EM GRUPO */
+
+.form-buttons{
+
+gap:4px;
+
+}
+
+
+/* BOTÃO TOPO (SAIR) */
+
+.topo-direita button{
+
+width:auto;
+padding:6px 10px;
+font-size:12px;
+
+}
+
+
+.topo-direita .btn-vermelho{
+
+font-size:8px;
+padding:4px 8px;
+border-radius:5px;
+
+}
+
+.btn-pagar,
+.btn-editar{
+
+font-size: 8px;
+padding:3px 8px;
+border-radius:4px;
+margin:2px;
+
+}
+
 
 }
