@@ -137,21 +137,21 @@ t.innerHTML += `
 
 <td style="text-align: center;">${formatarData(e.inicio)}</td>
 
-<td>${formatarMoeda(valor)}</td>
+<td style="text-align: center;">${formatarMoeda(valor)}</td>
 
 <td style="text-align: center;">${e.percentual}</td>
 
-<td>${formatarMoeda(juros)}</td>
+<td style="text-align: center;">${formatarMoeda(juros)}</td>
 
-<td>${formatarMoeda(pago)}</td>
+<td style="text-align: center;">${formatarMoeda(pago)}</td>
 
-<td>${formatarMoeda(faltante)}</td>
+<td style="text-align: center; font-weight: bold;">${formatarMoeda(faltante)}</td>
 
 <td style="text-align: center;">${formatarData(e.vencimento)}</td>
 
 <td style="text-align: center;">${e.garantia || ""}</td>
 
-<td class="${classeStatus}">${status}</td>
+<td style="text-align: center;" class="${classeStatus}">${status}</td>
 
 <td style="text-align: center;">
 

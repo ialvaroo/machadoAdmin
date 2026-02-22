@@ -20,6 +20,59 @@ color:#1e293b;
 
 }
 
+/* ================================= */
+/* TOPO DO SISTEMA */
+/* ================================= */
+
+.topo{
+
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+background:white;
+
+padding:15px 25px;
+
+border-radius:10px;
+
+box-shadow:0 4px 12px rgba(0,0,0,0.08);
+
+margin-bottom:25px;
+
+}
+
+
+/* logo */
+
+.logo{
+
+font-size:28px;
+
+font-weight:600;
+
+color:#0f172a;
+
+margin:0;
+
+}
+
+
+/* lado direito */
+
+.topo-direita{
+
+display:flex;
+
+align-items:center;
+
+gap:10px;
+
+}
+
 
 
 /* ================================= */
@@ -29,6 +82,8 @@ color:#1e293b;
 h2{
 
 margin-bottom:20px;
+
+align-items: center;
 
 font-size:26px;
 
@@ -116,7 +171,7 @@ font-weight:500;
 
 input{
 
-width:100%;
+width: 350px;
 
 padding:10px;
 
@@ -194,43 +249,49 @@ margin-top:5px;
 }
 
 
-
 /* ================================= */
-/* BOTÕES */
+/* BOTÕES OUTLINE PROFISSIONAL */
 /* ================================= */
 
-button{
+button,
+a.btn-azul,
+a.btn-vermelho,
+a.btn-verde{
+
+display:inline-block;
 
 padding:10px 18px;
 
-border:none;
-
 border-radius:6px;
-
-cursor:pointer;
 
 font-size:14px;
 
 font-weight:600;
 
-margin-top:15px;
+background:white;
 
-margin-right:10px;
+cursor:pointer;
 
-transition:0.2s;
+text-decoration:none;
+
+transition:0.5s;
+
+border:2px solid;
 
 }
 
 
-/* azul */
+/* ================================= */
+/* AZUL */
+/* ================================= */
 
 .btn-pagar,
 .btn-editar,
 .btn-azul{
 
-background:#2563eb;
+color:#2563eb;
 
-color:white;
+border-color:#2563eb;
 
 }
 
@@ -239,34 +300,27 @@ color:white;
 .btn-editar:hover,
 .btn-azul:hover{
 
-background:#1d4ed8;
-
-}
-
-
-
-/* vermelho */
-
-.btn-vermelho{
-
-background:#dc2626;
+background:#2563eb;
 
 color:white;
 
 }
 
 
-.btn-vermelho:hover{
+/* ================================= */
+/* VERDE */
+/* ================================= */
 
-background:#b91c1c;
+.btn-verde{
+
+color:#16a34a;
+
+border-color:#16a34a;
 
 }
 
 
-
-/* verde */
-
-.btn-verde{
+.btn-verde:hover{
 
 background:#16a34a;
 
@@ -275,10 +329,17 @@ color:white;
 }
 
 
-.btn-verde:hover{
+/* ================================= */
+/* VERMELHO */
+/* ================================= */
 
-background:#15803d;
+.btn-vermelho{ background:#dc2626; 
+  color:white; 
+} 
 
+.btn-vermelho:hover{ 
+  background:#a31919;
+  border-color: #a31919;
 }
 
 /* ================================= */
@@ -342,7 +403,7 @@ color:white;
 
 padding:12px;
 
-text-align:left;
+text-align:center;
 
 font-size:14px;
 
@@ -351,11 +412,13 @@ font-size:14px;
 
 td{
 
+
+
 padding:12px;
 
 border-bottom:1px solid #e2e8f0;
 
-font-size:14px;
+font-size:16px;
 
 }
 
@@ -465,7 +528,7 @@ cursor:pointer;
 #pesquisaCliente, #pesquisa{
 
 margin-bottom:15px;
-
+width: 300px;
 }
 
 

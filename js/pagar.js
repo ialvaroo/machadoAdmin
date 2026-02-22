@@ -99,17 +99,17 @@ async function carregarEmprestimo() {
       </thead>
       <tbody>
         <tr>
-          <td>${data.nome}</td>
-          <td>${formatarData(data.inicio)}</td>
-          <td>${formatarMoeda(valor)}</td>
-          <td>${data.percentual}</td>
-          <td>${formatarMoeda(juros)}</td>
-          <td>${formatarMoeda(valorPago)}</td>
-          <td>${formatarMoeda(totalFaltante)}</td>
-          <td>${formatarData(data.vencimento)}</td>
-          <td>${data.clientes?.telefone || ""}</td>
-          <td>${data.garantia}</td>
-          <td class="${classeStatus}">${status}</td>
+          <td style="font-weight: bold;">${data.nome}</td>
+          <td style="text-align: center;">${formatarData(data.inicio)}</td>
+          <td style="text-align: center;">${formatarMoeda(valor)}</td>
+          <td style="text-align: center;">${data.percentual}</td>
+          <td style="text-align: center;">${formatarMoeda(juros)}</td>
+          <td style="text-align: center;">${formatarMoeda(valorPago)}</td>
+          <td style="text-align: center; font-weight: bold;">${formatarMoeda(totalFaltante)}</td>
+          <td style="text-align: center;">${formatarData(data.vencimento)}</td>
+          <td style="text-align: center;">${data.clientes?.telefone || ""}</td>
+          <td style="text-align: center;">${data.garantia}</td>
+          <td style="text-align: center;" class="${classeStatus}">${status}</td>
         </tr>
       </tbody>
     </table>

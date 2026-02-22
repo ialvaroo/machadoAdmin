@@ -247,29 +247,29 @@ location.href="cliente.html?id="+e.cliente_id+"&origem=index.html";
 
 tr.innerHTML=`
 
-<td>${e.nome}</td>
+<td style="font-weight: bold;">${e.nome}</td>
 
-<td>${formatarData(e.inicio)}</td>
+<td style="text-align: center;">${formatarData(e.inicio)}</td>
 
-<td>${formatarMoeda(e.valor)}</td>
+<td style="text-align: center;">${formatarMoeda(e.valor)}</td>
 
-<td>${e.percentual}</td>
+<td style="text-align: center;">${e.percentual}</td>
 
-<td>${formatarMoeda(e.juros)}</td>
+<td style="text-align: center;">${formatarMoeda(e.juros)}</td>
 
-<td>${formatarMoeda(e.valor_pago)}</td>
+<td style="text-align: center;">${formatarMoeda(e.valor_pago)}</td>
 
-<td>${formatarMoeda(e.total_faltante)}</td>
+<td style="text-align: center; font-weight: bold;">${formatarMoeda(e.total_faltante)}</td>
 
-<td>${formatarData(e.vencimento)}</td>
+<td style="text-align: center;">${formatarData(e.vencimento)}</td>
 
-<td>${e.clientes?.telefone || ""}</td>
+<td style="text-align: center;">${e.clientes?.telefone || ""}</td>
 
-<td>${e.garantia}</td>
+<td style="text-align: center;">${e.garantia}</td>
 
-<td class="${classeStatus}">${status}</td>
+<td style="text-align: center;" class="${classeStatus}">${status}</td>
 
-<td>
+<td style="text-align: center;">
 
 <button class="btn-verde" onclick="event.stopPropagation(); pagar('${e.id}')">
 
