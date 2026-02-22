@@ -661,15 +661,18 @@ overflow-x:auto;
 
 
 /* ================================= */
-/* MOBILE PROFISSIONAL */
+/* MOBILE ULTRA AJUSTADO */
 /* ================================= */
 
 @media screen and (max-width:768px){
 
+/* BASE */
+
 body{
 
-padding:10px;
-font-size:16px;
+padding:4px;
+font-size:13px;
+line-height:1.35;
 
 }
 
@@ -678,7 +681,9 @@ font-size:16px;
 
 .topo{
 
-padding:12px;
+padding:6px 8px;
+margin-bottom:10px;
+border-radius:6px;
 
 }
 
@@ -687,8 +692,7 @@ padding:12px;
 
 .logo{
 
-font-size:22px;
-width:auto;
+font-size:16px;
 
 }
 
@@ -697,16 +701,39 @@ width:auto;
 
 h2{
 
-font-size:22px;
-padding-left:5px;
+font-size:16px;
+padding-left:4px;
+margin-bottom:8px;
 
 }
 
 
 h3{
 
-font-size:18px;
-padding-left:5px;
+font-size:15px;
+padding-left:4px;
+margin-bottom:6px;
+
+}
+
+
+/* CARD */
+
+.card{
+
+padding:8px;
+margin-bottom:10px;
+border-radius:6px;
+
+}
+
+
+/* FORM BOX */
+
+.form-box{
+
+padding:10px;
+margin:8px 4px;
 
 }
 
@@ -715,7 +742,9 @@ padding-left:5px;
 
 label{
 
-font-size:16px;
+font-size:13px;
+margin-top:8px;
+margin-bottom:3px;
 
 }
 
@@ -724,9 +753,21 @@ font-size:16px;
 
 input{
 
-font-size:16px;
-padding:12px;
+font-size:13px;
+padding:8px;
 width:100%;
+
+}
+
+
+/* PESQUISA */
+
+#pesquisa,
+#pesquisaCliente{
+
+font-size:13px;
+padding:7px;
+margin-left:4px;
 
 }
 
@@ -738,54 +779,59 @@ a.btn-azul,
 a.btn-vermelho,
 a.btn-verde{
 
-font-size:16px;
-padding:12px;
-width:100%;
+font-size:13px;
+padding:9px;
+border-radius:5px;
+}
+
+
+/* espaço entre botões */
+
+.form-buttons{
+
+gap:5px;
 
 }
 
 
 /* TABELA */
 
+.table-container{
+
+overflow-x:auto;
+
+}
+
+
 table{
 
-font-size:15px;
+font-size:12px;
 
 }
 
 
 th{
 
-font-size:15px;
-padding:8px;
+font-size:12px;
+padding:5px;
 
 }
 
 
 td{
 
-font-size:15px;
-padding:8px;
+font-size:12px;
+padding:5px;
 
 }
 
 
-/* PESQUISA */
+/* GRID PAGAR */
 
-#pesquisa,
-#pesquisaCliente{
+.detalhe-grid{
 
-font-size:16px;
-padding:10px;
-
-}
-
-
-/* CARD */
-
-.card{
-
-padding:15px;
+grid-template-columns:1fr;
+gap:4px;
 
 }
 
