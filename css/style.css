@@ -530,33 +530,227 @@ width: 300px;
 }
 
 
-
 /* ================================= */
-/* RESPONSIVO */
+/* RESPONSIVO MOBILE */
 /* ================================= */
 
-@media(max-width:768px){
+@media (max-width: 768px) {
+
+
+/* BODY */
 
 body{
+
+padding:15px;
+
+font-size:14px;
+
+}
+
+
+
+/* HEADER */
+
+.top{
+
+flex-direction:column;
+
+align-items:flex-start;
+
+gap:10px;
+
+}
+
+
+.top h1{
+
+font-size:20px;
+
+}
+
+
+
+/* BOTÕES */
+
+button,
+a.btn-azul,
+a.btn-vermelho,
+a.btn-verde{
+
+width:100%;
+
+text-align:center;
+
+margin-right:0;
+
+}
+
+
+
+/* INPUTS */
+
+input{
+
+font-size:16px;
+
+}
+
+
+
+/* CARDS */
+
+.card{
 
 padding:15px;
 
 }
 
 
+
+/* GRID DETALHES */
+
+.detalhe-grid{
+
+grid-template-columns:1fr;
+
+}
+
+
+
+/* TABELAS */
+
 table{
+
+display:block;
+
+overflow-x:auto;
+
+white-space:nowrap;
+
+font-size:13px;
+
+}
+
+
+
+/* SCROLL BONITO */
+
+table::-webkit-scrollbar{
+
+height:6px;
+
+}
+
+table::-webkit-scrollbar-thumb{
+
+background:#cbd5e1;
+
+border-radius:10px;
+
+}
+
+
+
+/* LABEL */
+
+label{
+
+font-size:14px;
+
+}
+
+
+
+/* TITULOS */
+
+h2{
+
+font-size:22px;
+
+}
+
+
+h3{
+
+font-size:18px;
+
+}
+
+
+
+/* CHECKBOX */
+
+.linha-checkbox{
+
+flex-direction:row;
+
+}
+
+
+
+/* INPUT PAGAMENTO */
+
+#valorPagamento{
+
+width:100%;
+
+}
+
+
+
+/* BOTÕES AÇÃO DA TABELA */
+
+td button{
+
+padding:6px 10px;
 
 font-size:12px;
 
 }
 
 
-button{
 
-width:100%;
+/* ESPAÇAMENTO ENTRE BOTÕES */
 
-margin-top:10px;
+button + button,
+a + button,
+button + a{
+
+margin-top:8px;
 
 }
+
+
+
+}
+
+
+/* ================================= */
+/* MOBILE PEQUENO */
+/* ================================= */
+
+@media (max-width: 480px) {
+
+
+h2{
+
+font-size:20px;
+
+}
+
+
+h3{
+
+font-size:16px;
+
+}
+
+
+.top h1{
+
+font-size:18px;
+
+}
+
 
 }
