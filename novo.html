@@ -26,73 +26,75 @@
 </div>
 
 <h2>Novo Empréstimo</h2>
-<br>
+
+<div class="ajustes">
+
+
+    <!-- PESQUISA CLIENTE -->
+
+    <label>Selecionar Cliente</label>
+
+    <input list="listaClientes" id="clienteInput" placeholder="Digite ou selecione">
+
+    <datalist id="listaClientes"></datalist>
 
 
 
-<!-- PESQUISA CLIENTE -->
-
-<label>Selecionar Cliente</label>
-
-<input list="listaClientes" id="clienteInput" placeholder="Digite ou selecione">
-
-<datalist id="listaClientes"></datalist>
+    <br>
 
 
 
-<br>
+    <label>
+
+    <input type="checkbox" id="novoCheck" onchange="alternarNovoCliente()">
+
+    Novo Cliente
+
+    </label>
+
+    <br>
 
 
-
-<label>
-
-<input type="checkbox" id="novoCheck" onchange="alternarNovoCliente()">
-
-Novo Cliente
-
-</label>
-
-<br>
+    <div id="camposCliente" class="desativado">
 
 
-<div id="camposCliente" class="desativado">
+    <label>Nome</label>
+
+    <input type="text" id="nome" disabled>
 
 
-<label>Nome</label>
+    <label>Telefone</label>
 
-<input type="text" id="nome" disabled>
+    <input type="text" id="telefone" disabled>
 
 
-<label>Telefone</label>
+    </div>
 
-<input type="text" id="telefone" disabled>
 
+    <label>Valor</label>
+    <input type="text" id="valor" placeholder="R$ 0,00">
+
+
+    <label>Juros (%)</label>
+    <input type="number" id="percentual" placeholder="Digite apenas números">
+
+
+    <label>Garantia</label>
+    <input type="text" id="garantia" placeholder="Cartão, cheque, etc">
+
+
+    <label>Vencimento</label>
+    <input type="date" id="vencimento" >
+
+
+    <br><br>
+
+
+    <button onclick="salvar()" class="btn-pagar">Salvar</button>
+
+    <button onclick="cancelar()" class="btn-vermelho">Cancelar</button>
 
 </div>
-
-
-<label>Valor</label>
-<input type="text" id="valor" placeholder="R$ 0,00">
-
-
-<label>Juros (%)</label>
-<input type="number" id="percentual" placeholder="Digite apenas números">
-
-
-<label>Garantia</label>
-<input type="text" id="garantia" placeholder="Cartão, cheque, etc">
-
-
-<label>Vencimento</label>
-<input type="date" id="vencimento" >
-
-
-<br><br>
-
-
-<button onclick="salvar()" class="btn-pagar">Salvar</button>
-
-<button onclick="cancelar()" class="btn-vermelho">Cancelar</button>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="js/supabase.js"></script>

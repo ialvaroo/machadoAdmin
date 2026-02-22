@@ -50,6 +50,8 @@ margin-bottom:25px;
 
 .logo{
 
+font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
 font-size:28px;
 
 font-weight:600;
@@ -83,6 +85,8 @@ h2{
 
 margin-bottom:20px;
 
+padding-left: 25px;
+
 align-items: center;
 
 font-size:26px;
@@ -97,7 +101,7 @@ color:#0f172a;
 h3{
 
 margin-bottom:15px;
-
+padding-left: 25px;
 color:#0f172a;
 
 }
@@ -121,6 +125,16 @@ margin-bottom:20px;
 box-shadow:0 4px 12px rgba(0,0,0,0.08);
 
 }
+
+
+/* ================================= */
+/* AJUSTA PADDING DE INPUT DAS PAGS */
+/* ================================= */
+
+.ajustes{
+  padding: 0px 25px;
+}
+
 
 
 
@@ -526,45 +540,131 @@ cursor:pointer;
 #pesquisaCliente, #pesquisa{
 
 margin-bottom:15px;
+margin-left: 25px;
 width: 300px;
 }
 
-
 /* ================================= */
-/* RESPONSIVO MOBILE */
+/* CORREÇÃO GLOBAL */
 /* ================================= */
 
-@media (max-width: 768px) {
+html, body{
+
+width:100%;
+overflow-x:hidden;
+
+}
 
 
-/* BODY */
+/* CONTAINER PADRÃO */
 
-body{
+.container{
 
-padding:15px;
-
-font-size:14px;
+width:100%;
+max-width:1200px;
+margin:auto;
 
 }
 
 
 
+/* ================================= */
 /* HEADER */
+/* ================================= */
 
 .top{
 
-flex-direction:column;
-
-align-items:flex-start;
-
-gap:10px;
+width:100%;
+padding:15px 20px;
 
 }
 
 
-.top h1{
 
-font-size:20px;
+/* ================================= */
+/* TITULOS */
+/* ================================= */
+
+h2, h3{
+
+margin-top:10px;
+
+}
+
+
+
+/* ================================= */
+/* INPUT PESQUISA */
+/* ================================= */
+
+#pesquisa,
+#pesquisaCliente{
+
+width:100%;
+max-width:350px;
+
+}
+
+
+
+/* ================================= */
+/* BOTÕES */
+/* ================================= */
+
+button,
+a.btn-azul,
+a.btn-vermelho,
+a.btn-verde{
+
+max-width:250px;
+
+}
+
+
+
+/* ================================= */
+/* TABELAS */
+/* ================================= */
+
+table{
+
+width:100%;
+table-layout:auto;
+
+}
+
+
+
+/* impede estourar */
+
+th, td{
+
+white-space:nowrap;
+
+}
+
+
+
+/* CONTAINER DA TABELA */
+
+.table-container{
+
+width:100%;
+overflow-x:auto;
+
+}
+
+
+
+/* ================================= */
+/* MOBILE */
+/* ================================= */
+
+@media(max-width:768px){
+
+body{
+
+padding:10px;
 
 }
 
@@ -578,54 +678,25 @@ a.btn-vermelho,
 a.btn-verde{
 
 width:100%;
-
-text-align:center;
-
-margin-right:0;
+max-width:100%;
 
 }
 
 
 
-/* INPUTS */
+/* PESQUISA */
 
-input{
+#pesquisa{
 
-font-size:16px;
-
-}
-
-
-
-/* CARDS */
-
-.card{
-
-padding:15px;
+max-width:100%;
 
 }
 
 
 
-/* GRID DETALHES */
-
-.detalhe-grid{
-
-grid-template-columns:1fr;
-
-}
-
-
-
-/* TABELAS */
+/* TABELA */
 
 table{
-
-display:block;
-
-overflow-x:auto;
-
-white-space:nowrap;
 
 font-size:13px;
 
@@ -633,122 +704,11 @@ font-size:13px;
 
 
 
-/* SCROLL BONITO */
+/* CARD */
 
-table::-webkit-scrollbar{
+.card{
 
-height:6px;
-
-}
-
-table::-webkit-scrollbar-thumb{
-
-background:#cbd5e1;
-
-border-radius:10px;
-
-}
-
-
-
-/* LABEL */
-
-label{
-
-font-size:14px;
-
-}
-
-
-
-/* TITULOS */
-
-h2{
-
-font-size:22px;
-
-}
-
-
-h3{
-
-font-size:18px;
-
-}
-
-
-
-/* CHECKBOX */
-
-.linha-checkbox{
-
-flex-direction:row;
-
-}
-
-
-
-/* INPUT PAGAMENTO */
-
-#valorPagamento{
-
-width:100%;
-
-}
-
-
-
-/* BOTÕES AÇÃO DA TABELA */
-
-td button{
-
-padding:6px 10px;
-
-font-size:12px;
-
-}
-
-
-
-/* ESPAÇAMENTO ENTRE BOTÕES */
-
-button + button,
-a + button,
-button + a{
-
-margin-top:8px;
-
-}
-
-
-
-}
-
-
-/* ================================= */
-/* MOBILE PEQUENO */
-/* ================================= */
-
-@media (max-width: 480px) {
-
-
-h2{
-
-font-size:20px;
-
-}
-
-
-h3{
-
-font-size:16px;
-
-}
-
-
-.top h1{
-
-font-size:18px;
+padding:15px;
 
 }
 
