@@ -80,8 +80,8 @@ async function carregarEmprestimo() {
   else classeStatus = "status-aberto";
 
   document.getElementById("detalhesEmprestimo").innerHTML = `
-  <div class="table-container">  
   <h3>Detalhes do Empréstimo</h3>
+  <div class="table-container">  
     <table>
       <thead>
         <tr>
