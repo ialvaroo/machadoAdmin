@@ -63,7 +63,7 @@ location.href="cliente.html?id="+cliente.id+"&origem=clientes.html";
 
 tr.innerHTML=`
 
-<td >${cliente.nome}</td>
+<td style="padding-left: 60px; width: 30vw;">${cliente.nome}</td>
 
 <td style="text-align: center;">${cliente.telefone || ""}</td>
 
@@ -75,6 +75,14 @@ tr.innerHTML=`
 onclick="event.stopPropagation(); editarCliente('${cliente.id}')">
 
 Editar
+
+</button>
+
+<button  class="btn-vermelho" 
+
+onclick="event.stopPropagation(); editarCliente('${cliente.id}')">
+
+Excluir
 
 </button>
 

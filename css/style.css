@@ -106,7 +106,7 @@ color:#0f172a;
 h3{
 
 margin-bottom:15px;
-padding-left: 25px;
+/* padding-left: 25px; */
 color:#0f172a;
 
 }
@@ -324,14 +324,24 @@ color:white;
 /* PAGAR - VERDE */
 /* ================================= */
 
-.btn-verde, .btn-pagar{
+.btn-verde{
+background:#16a34a;
+color:white;
+transition: 1s;
 
+}
+
+.btn-verde:hover{
+background:#006425;
+color:white;
+} 
+
+.btn-pagar{
 color:#16a34a;
 border-color:#16a34a;
 
 }
 
-.btn-verde:hover, 
 .btn-pagar:hover{
 
 background:#16a34a;
@@ -535,9 +545,7 @@ cursor:pointer;
 /* ================================= */
 
 #pesquisaCliente, #pesquisa{
-
-margin-bottom:15px;
-margin-left: 25px;
+margin:15px 0 10px 0;
 width: 300px;
 }
 
@@ -583,12 +591,43 @@ padding:15px 20px;
 /* ================================= */
 
 h2, h3{
+margin-top:10px;
+}
+
+.alternar a{
+
+display:inline-block;
+
+padding:8px 12px;
+
+border-radius:9px;
+
+font-size:20px;
+
+font-weight:600;
+
+text-decoration:none;
 
 margin-top:10px;
 
+margin-right:5px;
+
 }
 
+.alternar #atual{
+color: white;
+background-color: #1e293b;
+}
 
+.alternar #prox{
+color: #333;
+background-color: #e6e6e6;
+transition:0.5s;
+}
+
+.alternar #prox:hover{
+background-color: #c4c4c4;
+}
 
 /* ================================= */
 /* INPUT PESQUISA */
