@@ -247,8 +247,6 @@ margin:0;
 }
 
 
-
-
 /* ================================= */
 /* INPUT PAGAMENTO */
 /* ================================= */
@@ -264,9 +262,7 @@ font-size:15px;
 border:1px solid #cbd5e1;
 
 margin-top:5px;
-
 }
-
 
 /* ================================= */
 /* BOTÕES OUTLINE PROFISSIONAL */
@@ -305,20 +301,15 @@ border:2px solid;
 
 .btn-editar,
 .btn-azul{
-
 color:#2563eb;
 border-color:#2563eb;
-
 }
 
 .btn-editar:hover,
 .btn-azul:hover{
-
 background:#2563eb;
 color:white;
-
 }
-
 
 /* ================================= */
 /* PAGAR - VERDE */
@@ -328,7 +319,6 @@ color:white;
 background:#16a34a;
 color:white;
 transition: 1s;
-
 }
 
 .btn-verde:hover{
@@ -339,16 +329,12 @@ color:white;
 .btn-pagar{
 color:#16a34a;
 border-color:#16a34a;
-
 }
 
 .btn-pagar:hover{
-
 background:#16a34a;
 color:white;
-
 }
-
 
 /* ================================= */
 /* VERMELHO */
@@ -372,23 +358,14 @@ a.btn-vermelho,
 a.btn-verde{
 
 display:inline-block;
-
 padding:10px 18px;
-
 border-radius:6px;
-
 font-size:14px;
-
 font-weight:600;
-
 text-decoration:none;
-
 margin-top:15px;
-
 margin-right:10px;
-
 transition:0.2s;
-
 
 }
 
@@ -430,115 +407,70 @@ font-size:14px;
 
 }
 
-
 td{
-
-
-
 padding:12px;
-
 border-bottom:1px solid #e2e8f0;
-
 font-size:16px;
-
 }
-
 
 tr:hover{
-
 background:#ebebeb;
-
 }
-
-
 
 /* ================================= */
 /* STATUS */
 /* ================================= */
 
 .status-aberto{
-
 color:#2563eb;
 font-weight:600;
-
 }
-
 
 .status-quitado{
-
 color:#16a34a;
 font-weight:600;
-
 }
-
 
 .status-atrasado{
-
 color:#f59e0b;
-
 font-weight:600;
-
 }
-
 
 .status-risco{
-
 color:#dc2626;
-
 font-weight:600;
-
 }
-
-
 
 /* ================================= */
 /* DESATIVADO */
 /* ================================= */
 
 .desativado{
-
 opacity:0.5;
-
 pointer-events:none;
-
 }
-
 
 .campo-desativado{
-
 opacity:0.4;
-
 }
-
-
 
 /* ================================= */
 /* CHECKBOX */
 /* ================================= */
 
 input[type="checkbox"]{
-
 width:auto;
-
 margin-right:8px;
-
 cursor:pointer;
-
 }
-
-
 
 /* ================================= */
 /* DATA */
 /* ================================= */
 
 input[type="date"]{
-
 cursor:pointer;
-
 }
-
-
 
 /* ================================= */
 /* PESQUISA */
@@ -554,37 +486,26 @@ width: 300px;
 /* ================================= */
 
 html, body{
-
 width:100%;
 overflow-x:hidden;
-
 }
-
 
 /* CONTAINER PADRÃO */
 
 .container{
-
 width:100%;
 max-width:1200px;
 margin:auto;
-
 }
-
-
 
 /* ================================= */
 /* HEADER */
 /* ================================= */
 
 .top{
-
 width:100%;
 padding:15px 20px;
-
 }
-
-
 
 /* ================================= */
 /* TITULOS */
@@ -686,7 +607,6 @@ font-size:13px;
 line-height:1.35;
 }
 
-
 /* TOPO */
 
 .topo{
@@ -694,7 +614,6 @@ padding:6px 8px;
 margin-bottom:10px;
 border-radius:6px;
 }
-
 
 /* LOGO */
 
@@ -770,13 +689,11 @@ padding:9px;
 border-radius:5px;
 }
 
-
 /* espaço entre botões */
 
 .form-buttons{
 gap:5px;
 }
-
 
 /* TABELA */
 
@@ -784,24 +701,19 @@ gap:5px;
 overflow-x:auto;
 }
 
-
 table{
 font-size:10px;
 }
-
-
 
 th{
 font-size:10px;
 padding:5px;
 }
 
-
 td{
 font-size:10px;
 padding:3px;
 }
-
 
 /* GRID PAGAR */
 
@@ -830,13 +742,11 @@ border-radius:5px;
 margin-left: 5px;
 }
 
-
 /* BOTÕES EM GRUPO */
 
 .form-buttons{
 gap:4px;
 }
-
 
 /* BOTÃO TOPO (SAIR) */
 
@@ -846,10 +756,24 @@ padding:6px 10px;
 font-size:12px;
 }
 
-.topo-direita .btn-vermelho{
+.topo-direita {
 font-size:8px;
 padding:4px 8px;
 border-radius:5px;
+}
+
+.btn-vermelho{
+font-size: 8px;
+padding:3px 8px;
+border-radius:4px;
+margin:2px; 
+}
+
+.btn-verde{
+font-size: 12px;
+padding:5px 10px;
+border-radius:6px;
+margin:0px; 
 }
 
 .btn-pagar,
@@ -859,6 +783,33 @@ font-size: 8px;
 padding:3px 8px;
 border-radius:4px;
 margin:2px;
+}
+
+.alternar a{
+
+padding:4px 8px;
+
+border-radius:7px;
+
+font-size:18px;
+
+font-weight:600;
+
+text-decoration:none;
+
+margin-top:10px;
+
+margin-right:5px;
+
+}
+
+#pesquisa,
+#pesquisaCliente{
+
+font-size:13px;
+padding:7px;
+margin-left:0px;
+margin-top: 0px;
 }
 
 }
