@@ -635,13 +635,9 @@ background-color: #c4c4c4;
 
 #pesquisa,
 #pesquisaCliente{
-
 width:100%;
 max-width:350px;
-
 }
-
-
 
 /* ================================= */
 /* BOTÕES */
@@ -651,45 +647,30 @@ button,
 a.btn-azul,
 a.btn-vermelho,
 a.btn-verde{
-
 max-width:250px;
-
 }
-
-
 
 /* ================================= */
 /* TABELAS */
 /* ================================= */
 
 table{
-
 width:100%;
 table-layout:auto;
-
 }
-
-
 
 /* impede estourar */
 
 th, td{
-
 white-space:nowrap;
-
 }
-
-
 
 /* CONTAINER DA TABELA */
 
 .table-container{
-
 width:100%;
 overflow-x:auto;
-
 }
-
 
 /* ================================= */
 /* MOBILE ULTRA AJUSTADO */
@@ -700,96 +681,72 @@ overflow-x:auto;
 /* BASE */
 
 body{
-
 padding:4px;
 font-size:13px;
 line-height:1.35;
-
 }
 
 
 /* TOPO */
 
 .topo{
-
 padding:6px 8px;
 margin-bottom:10px;
 border-radius:6px;
-
 }
 
 
 /* LOGO */
 
 .logo{
-
 font-size:16px;
-
 }
-
 
 /* TITULOS */
 
 h2{
-
 font-size:16px;
 padding-left:4px;
 margin-bottom:8px;
-
 }
 
 
 h3{
-
 font-size:15px;
 padding-left:4px;
 margin-bottom:6px;
-
 }
-
 
 /* CARD */
 
 .card{
-
 padding:8px;
 margin-bottom:10px;
 border-radius:6px;
-
 }
-
 
 /* FORM BOX */
 
 .form-box{
-
 padding:10px;
 margin:8px 4px;
-
 }
-
 
 /* LABEL */
 
 label{
-
 font-size:13px;
 margin-top:8px;
 margin-bottom:3px;
-
 }
-
 
 /* INPUT */
 
 input{
-
 font-size:13px;
 padding:8px;
 width:100%;
-
 }
-
 
 /* PESQUISA */
 
@@ -799,9 +756,7 @@ width:100%;
 font-size:13px;
 padding:7px;
 margin-left:4px;
-
 }
-
 
 /* BOTÕES */
 
@@ -819,51 +774,40 @@ border-radius:5px;
 /* espaço entre botões */
 
 .form-buttons{
-
 gap:5px;
-
 }
 
 
 /* TABELA */
 
 .table-container{
-
 overflow-x:auto;
-
 }
 
 
 table{
-
 font-size:10px;
-
 }
 
 
-th{
 
+th{
 font-size:10px;
 padding:5px;
-
 }
 
 
 td{
-
 font-size:10px;
 padding:3px;
-
 }
 
 
 /* GRID PAGAR */
 
 .detalhe-grid{
-
 grid-template-columns:1fr;
 gap:4px;
-
 }
 
 }
@@ -890,29 +834,22 @@ margin-left: 5px;
 /* BOTÕES EM GRUPO */
 
 .form-buttons{
-
 gap:4px;
-
 }
 
 
 /* BOTÃO TOPO (SAIR) */
 
 .topo-direita button{
-
 width:auto;
 padding:6px 10px;
 font-size:12px;
-
 }
 
-
 .topo-direita .btn-vermelho{
-
 font-size:8px;
 padding:4px 8px;
 border-radius:5px;
-
 }
 
 .btn-pagar,
@@ -922,8 +859,6 @@ font-size: 8px;
 padding:3px 8px;
 border-radius:4px;
 margin:2px;
-
 }
-
 
 }
