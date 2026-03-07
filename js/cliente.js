@@ -29,32 +29,36 @@ function formatarData(data){
 
 
 // ===============================
-// JUROS POR DIA
+// JUROS POR MÊS (MÊS COMPLETO)
 // ===============================
 
-function calcularDias(inicio) {
+function calcularMeses(inicio){
 
   let dataInicio = zerarHorario(criarDataLocal(inicio));
   let hoje = zerarHorario(new Date());
 
-  let diffMs = hoje - dataInicio;
-  let dias = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+  let anos = hoje.getFullYear() - dataInicio.getFullYear();
+  let meses = hoje.getMonth() - dataInicio.getMonth();
 
-  if (dias < 0) return 0;
+  let totalMeses = anos * 12 + meses;
 
-  return dias;
+  // ainda não chegou no mesmo dia do mês
+  if(hoje.getDate() < dataInicio.getDate()){
+    totalMeses--;
+  }
+
+  if(totalMeses < 0) return 0;
+
+  return totalMeses;
 }
 
-function calcularTotalComJuros(valor, percentual, inicio) {
+function calcularTotalComJuros(valor, percentual, inicio){
 
-  let dias = calcularDias(inicio);
+  let meses = calcularMeses(inicio);
 
   let taxaMensal = percentual / 100;
 
-  // taxa diária equivalente
-  let taxaDiaria = Math.pow(1 + taxaMensal, 1/30) - 1;
-
-  let total = valor * Math.pow((1 + taxaDiaria), dias);
+  let total = valor * Math.pow((1 + taxaMensal), meses);
 
   return total;
 }
@@ -130,7 +134,7 @@ async function carregar(){
     let valor = Number(e.valor || 0);
     let pago = Number(e.valor_pago || 0);
 
-    // CALCULA JUROS EM TEMPO REAL
+    // JUROS CALCULADOS POR MÊS
     let totalAtualizado = calcularTotalComJuros(
       valor,
       Number(e.percentual),
@@ -185,6 +189,7 @@ async function carregar(){
     `;
   });
 }
+
 
 // ===============================
 

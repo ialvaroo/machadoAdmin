@@ -291,8 +291,7 @@ text-decoration:none;
 
 transition:0.5s;
 
-border:2px solid;
-
+border: 2px solid;
 }
 
 /* ================================= */
@@ -301,6 +300,7 @@ border:2px solid;
 
 .btn-editar,
 .btn-azul{
+  
 color:#2563eb;
 border-color:#2563eb;
 }
@@ -316,6 +316,7 @@ color:white;
 /* ================================= */
 
 .btn-verde{
+height: px;
 background:#16a34a;
 color:white;
 transition: 1s;

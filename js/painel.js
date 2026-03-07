@@ -6,6 +6,7 @@ function criarDataLocal(dataString){
   if(!dataString) return null;
 
   const partes = dataString.split("-");
+
   return new Date(
     Number(partes[0]),
     Number(partes[1]) - 1,
@@ -32,32 +33,35 @@ let ordemVencAsc = true;
 
 
 // ===============================
-// CÁLCULO DE JUROS POR DIA
+// CÁLCULO DE JUROS POR MÊS
 // ===============================
 
-function calcularDias(inicio) {
+function calcularMeses(inicio){
 
   let dataInicio = zerarHorario(criarDataLocal(inicio));
   let hoje = zerarHorario(new Date());
 
-  let diffMs = hoje - dataInicio;
-  let dias = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+  let anos = hoje.getFullYear() - dataInicio.getFullYear();
+  let meses = hoje.getMonth() - dataInicio.getMonth();
 
-  if (dias < 0) return 0;
+  let totalMeses = anos * 12 + meses;
 
-  return dias;
+  if(hoje.getDate() < dataInicio.getDate()){
+    totalMeses--;
+  }
+
+  if(totalMeses < 0) return 0;
+
+  return totalMeses;
 }
 
-function calcularTotalComJuros(valor, percentual, inicio) {
+function calcularTotalComJuros(valor, percentual, inicio){
 
-  let dias = calcularDias(inicio);
+  let meses = calcularMeses(inicio);
 
   let taxaMensal = percentual / 100;
 
-  // taxa diária equivalente (juros compostos)
-  let taxaDiaria = Math.pow(1 + taxaMensal, 1/30) - 1;
-
-  let total = valor * Math.pow((1 + taxaDiaria), dias);
+  let total = valor * Math.pow((1 + taxaMensal), meses);
 
   return total;
 }
@@ -78,6 +82,7 @@ function formatarMoeda(valor){
 
 function limparMoeda(valor) {
   if (!valor) return 0;
+
   return Number(
     valor
       .replace("R$ ", "")
@@ -95,15 +100,20 @@ const inputValor = document.getElementById("valor");
 
 if(inputValor){
   inputValor.addEventListener("input", function (e) {
+
     let valor = e.target.value.replace(/\D/g, "");
+
     if(valor === ""){
       e.target.value = "";
       return;
     }
+
     valor = (Number(valor) / 100).toFixed(2);
     valor = valor.replace(".", ",");
     valor = valor.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+
     e.target.value = "R$ " + valor;
+
   });
 }
 
@@ -113,15 +123,19 @@ function pegarValor() {
 }
 
 function validarValor(maximo) {
+
   const valor = pegarValor();
+
   if(!valor || valor <= 0){
     alert("Digite um valor válido.");
     return false;
   }
+
   if(valor > maximo){
     alert("Valor maior que o permitido.");
     return false;
   }
+
   return true;
 }
 
@@ -137,11 +151,12 @@ async function carregar(){
   .select(`
     *,
     clientes (
+      nome,
       telefone,
       ativo
     )
   `)
-  .eq("clientes.ativo", true); 
+  .eq("clientes.ativo", true);
 
   if(error){
     console.log(error);
@@ -227,6 +242,7 @@ function criarLinha(e, destino){
   }
 
   let classeStatus = "";
+
   if (status === "PAGO") classeStatus = "status-quitado";
   else if (status === "ATRASADO") classeStatus = "status-atrasado";
   else if (status === "RISCO") classeStatus = "status-risco";
@@ -239,7 +255,7 @@ function criarLinha(e, destino){
   };
 
   tr.innerHTML=`
-    <td style="font-weight: bold;">${e.nome}</td>
+    <td style="font-weight: bold;">${e.clientes?.nome || ""}</td>
     <td style="text-align: center;">${formatarData(e.inicio)}</td>
     <td style="text-align: center;">${formatarMoeda(e.valor)}</td>
     <td style="text-align: center;">${e.percentual}%</td>
@@ -269,24 +285,31 @@ function criarLinha(e, destino){
 // ===============================
 
 document.getElementById("ordenarNome").onclick=function(){
+
   ordemNomeAsc=!ordemNomeAsc;
+
   listaEmprestimos.sort((a,b)=>
     ordemNomeAsc
-      ? a.nome.localeCompare(b.nome)
-      : b.nome.localeCompare(a.nome)
+      ? (a.clientes?.nome || "").localeCompare(b.clientes?.nome || "")
+      : (b.clientes?.nome || "").localeCompare(a.clientes?.nome || "")
   );
+
   renderizar(listaEmprestimos);
 };
 
 document.getElementById("ordenarVencimento").onclick=function(){
+
   ordemVencAsc=!ordemVencAsc;
+
   listaEmprestimos.sort((a,b)=>
     ordemVencAsc
       ? criarDataLocal(a.vencimento)-criarDataLocal(b.vencimento)
       : criarDataLocal(b.vencimento)-criarDataLocal(a.vencimento)
   );
+
   renderizar(listaEmprestimos);
 };
+
 
 // ===============================
 // BOTÕES
@@ -299,6 +322,7 @@ function pagar(id){
 function editar(id){
   location.href="editar.html?id="+id;
 }
+
 
 // ===============================
 // PESQUISA
@@ -314,7 +338,7 @@ document.getElementById("pesquisa").addEventListener("keyup", function(){
   }
 
   let filtrado = listaEmprestimos.filter(e =>
-    e.nome.toLowerCase().includes(termo)
+    (e.clientes?.nome || "").toLowerCase().includes(termo)
   );
 
   renderizar(filtrado);

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Painel • MachadoAdmin</title>
+
+<link rel="stylesheet" href="css/layout.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+</head>
+
+<body>
+
+<div class="layout">
+
+<!-- SIDEBAR -->
+
+<aside class="sidebar">
+
+<div class="logo">
+MachadoAdmin
+</div>
+
+<nav>
+
+<a href="index.html">Dashboard</a>
+<a href="clientes.html">Clientes</a>
+<a href="emprestimos.html">Empréstimos</a>
+<a href="pagamentos.html">Pagamentos</a>
+
+</nav>
+
+</aside>
+
+
+<!-- MAIN -->
+
+<div class="main">
+
+<header class="topbar">
+
+<div class="topbar-left">
+
+<input type="text" id="pesquisa" placeholder="Pesquisar cliente">
+
+</div>
+
+<div class="topbar-right">
+
+<button class="btn-primary" onclick="location.href='novo.html'">
+Novo Empréstimo
+</button>
+
+<button class="btn-vermelho" id="logout">
+Sair
+</button>
+
+</div>
+
+</header>
+
+
+<section class="content">
+
+<h2>Painel de Empréstimos</h2>
+
+<br>
+
+<h3>Lista Principal</h3>
+
+<div class="table-container">
+
+<table id="tabela">
+
+<thead>
+
+<tr>
+
+<th id="ordenarNome" style="cursor:pointer">Nome ⬍</th>
+<th>Inicio</th>
+<th>Valor</th>
+<th>%</th>
+<th>Juros</th>
+<th>Pago</th>
+<th>Total (Faltante)</th>
+<th id="ordenarVencimento" style="cursor:pointer">Vencimento ⬍</th>
+<th>Telefone</th>
+<th>Garantia</th>
+<th>Status</th>
+<th>Ações</th>
+
+</tr>
+
+</thead>
+
+<tbody></tbody>
+
+</table>
+
+</div>
+
+
+<br><br>
+
+<h3>RISCO DE PERDA (+60 dias)</h3>
+
+<div class="table-container">
+
+<table id="risco">
+
+<thead>
+
+<tr>
+
+<th>Nome</th>
+<th>Inicio</th>
+<th>Valor</th>
+<th>%</th>
+<th>Juros</th>
+<th>Pago</th>
+<th>Total (Faltante)</th>
+<th>Vencimento</th>
+<th>Telefone</th>
+<th>Garantia</th>
+<th>Status</th>
+<th>Ações</th>
+
+</tr>
+
+</thead>
+
+<tbody></tbody>
+
+</table>
+
+</div>
+
+</section>
+
+</div>
+
+</div>
+
+
+<script src="js/supabase.js"></script>
+<script src="js/painel.js"></script>
+<script src="js/layout.js"></script>
+
+<script>
+
+async function verificarLogin(){
+
+const { data } = await supabase.auth.getSession()
+
+if(!data.session){
+
+window.location.href="login.html"
+
+}
+
+}
+
+verificarLogin()
+
+
+document.getElementById("logout").addEventListener("click", async () => {
+
+await supabase.auth.signOut()
+
+window.location.href="login.html"
+
+})
+
+</script>
+
+</body>
+</html>
