@@ -1,13 +1,17 @@
-async function protegerPagina(){
+async function verificarLogin(){
 
-const { data, error } = await window.supabase.auth.getSession()
+const { data } = await supabaseClient.auth.getSession();
 
-if(error || !data.session){
+if(!data.session){
 
-window.location.href = "login.html"
+window.location.href = "login.html";
+
+return;
 
 }
 
+document.body.style.display="block";
+
 }
 
-protegerPagina()
+verificarLogin();

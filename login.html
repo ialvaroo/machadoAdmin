@@ -18,27 +18,42 @@ font-family:'Inter',sans-serif;
 body{
 height:100vh;
 display:flex;
-background:#f8fafc;
+align-items:center;
+justify-content:center;
+background:#f1f5f9;
 }
 
+/* CAIXA CENTRAL */
+.container{
+width:900px;
+display:flex;
+background:white;
+border-radius:16px;
+overflow:hidden;
+box-shadow:0 10px 35px rgba(0,0,0,0.08);
+}
+
+/* LADO ESQUERDO */
 .left{
 flex:1;
 display:flex;
 flex-direction:column;
 justify-content:center;
-padding:80px;
-background:linear-gradient(135deg,#2563eb,#1e40af);
+padding:60px;
+background: #2563eb;
 color:white;
 }
 
-.logo{
-font-size:20px;
-font-weight:600;
+
+.logo img{
+height:80px;
+width:auto;
+display:block;
 margin-bottom:30px;
 }
 
 .left h1{
-font-size:36px;
+font-size:34px;
 margin-bottom:15px;
 }
 
@@ -48,16 +63,17 @@ max-width:420px;
 line-height:1.6;
 }
 
+/* LADO DIREITO */
 .right{
-width:420px;
+width:380px;
 display:flex;
 align-items:center;
 justify-content:center;
-background:white;
+padding:40px;
 }
 
 .login-box{
-width:300px;
+width:100%;
 }
 
 .login-box h2{
@@ -81,6 +97,11 @@ padding:12px;
 border-radius:8px;
 border:1px solid #e5e7eb;
 font-size:14px;
+outline:none;
+}
+
+input:focus{
+border-color:#2563eb;
 }
 
 button{
@@ -93,6 +114,11 @@ color:white;
 font-weight:500;
 font-size:14px;
 cursor:pointer;
+transition:0.2s;
+}
+
+button:hover{
+background:#1d4ed8;
 }
 
 .footer{
@@ -102,14 +128,174 @@ color:#9ca3af;
 text-align:center;
 }
 
+/* ================================= */
+/* NOTEBOOKS PEQUENOS */
+/* ================================= */
+
+@media (max-width:1200px){
+
+.container{
+width:95%;
+max-width:900px;
+}
+
+}
+
+
+/* ================================= */
+/* TABLETS */
+/* ================================= */
+
+@media (max-width:900px){
+
+.container{
+flex-direction:column;
+max-width:520px;
+}
+
+.left{
+padding:45px;
+text-align:center;
+}
+
+.logo img{
+margin:auto;
+margin-bottom:20px;
+}
+
+.left h1{
+font-size:28px;
+}
+
+.left p{
+margin:auto;
+}
+
+.right{
+width:100%;
+padding:40px;
+}
+
+}
+
+
+/* ================================= */
+/* CELULAR EM PÉ */
+/* ================================= */
+
+@media (max-width:600px){
+
+body{
+padding:20px;
+height:auto;
+
+display:flex;
+align-items:center;
+justify-content:center;
+}
+
+.container{
+width:100%;
+max-width:420px;
+margin:auto;
+}
+
+.left{
+padding:30px 25px;
+text-align:center;
+}
+
+.left h1{
+font-size:24px;
+}
+
+.left p{
+font-size:14px;
+}
+
+.right{
+padding:25px;
+}
+
+}
+
+
+/* ================================= */
+/* CELULAR DEITADO (LANDSCAPE) */
+/* ================================= */
+
+@media (max-width:900px) and (orientation:landscape){
+
+body{
+padding:15px;
+}
+
+.container{
+flex-direction:row;
+max-width:750px;
+height:auto;
+}
+
+.left{
+padding:30px;
+}
+
+.left h1{
+font-size:24px;
+}
+
+.left p{
+font-size:13px;
+}
+
+.logo img{
+height:60px;
+}
+
+.right{
+width:320px;
+padding:30px;
+}
+
+}
+
+
+/* ================================= */
+/* TELAS GRANDES */
+/* ================================= */
+
+@media (min-width:1600px){
+
+.container{
+max-width:1100px;
+}
+
+.left h1{
+font-size:38px;
+}
+
+.left p{
+font-size:17px;
+}
+
+.login-box h2{
+font-size:24px;
+}
+
+}
+
 </style>
 </head>
 
 <body>
 
+<div class="container">
+
 <div class="left">
 
-<div class="logo">MachadoAdmin</div>
+<div class="logo">
+<img src="img/image.png" alt="Machado Admin">
+</div>
 
 <h1>Sistema de Empréstimos</h1>
 
@@ -145,6 +331,8 @@ Entrar
 
 <div class="footer">
 © 2026 MachadoAdmin
+</div>
+
 </div>
 
 </div>
@@ -202,6 +390,8 @@ window.location.href = "index.html"
 })
 
 </script>
+
+<script src="js/logoff.js"></script>
 
 </body>
 </html>

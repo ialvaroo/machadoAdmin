@@ -114,7 +114,7 @@ tbody.appendChild(tr);
 
 // pesquisa
 
-document.getElementById("pesquisaCliente")
+document.getElementById("pesquisa")
 
 .addEventListener("keyup",function(){
 

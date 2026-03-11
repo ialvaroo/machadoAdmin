@@ -30,7 +30,7 @@ html{
 /* TOPO DO SISTEMA */
 /* ================================= */
 
-.topo{
+/* .topo{
 
 display:flex;
 
@@ -51,7 +51,6 @@ margin-bottom:25px;
 }
 
 
-/* logo */
 
 .logo{
 
@@ -67,7 +66,6 @@ margin:0;
 }
 
 
-/* lado direito */
 
 .topo-direita{
 
@@ -77,10 +75,117 @@ align-items:center;
 
 gap:10px;
 
+} */
+
+/* ================================= */
+/* TOPO MODERNO */
+/* ================================= */
+
+.topo{
+
+display:flex;
+justify-content:space-between;
+align-items:center;
+
+background:white;
+
+padding:18px 40px;
+
+margin:-30px -30px 25px -30px;
+
+border-bottom:1px solid #e2e8f0;
+
+box-shadow:0 4px 12px rgba(0,0,0,0.06);
+
+}
+/* lado esquerdo */
+
+.topo-esquerda{
+
+display:flex;
+flex-direction:column;
+
 }
 
+.logo-area{
 
+display:flex;
+align-items:center;
+gap:10px;
 
+}
+
+.logo-img{
+
+height:32px;
+width:auto;
+
+}
+
+.logo{
+
+font-size:24px;
+font-weight:600;
+color:#0f172a;
+}
+
+/* subtitulo */
+
+.sistema{
+
+font-size:13px;
+color:#64748b;
+margin-top:2px;
+
+}
+
+/* lado direito */
+
+.topo-direita{
+
+display:flex;
+align-items:center;
+gap:10px;
+
+}
+
+/* botão sair */
+
+.topo-direita button{
+
+padding:8px 16px;
+font-size:13px;
+border-radius:8px;
+
+}
+
+/* ================================= */
+/* PESQUISA + BOTÃO ALINHADOS */
+/* ================================= */
+
+.acoes-topo{
+
+display:flex;
+align-items:center;
+gap:12px;
+margin:10px 0 15px 0;
+
+}
+
+.acoes-topo #pesquisa{
+
+margin:0;
+width:300px;
+
+}
+
+.acoes-topo .btn-verde{
+
+display:flex;
+align-items:center;
+gap:6px;
+
+}
 
 /* ================================= */
 /* TITULOS */
