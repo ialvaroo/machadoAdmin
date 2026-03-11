@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+
+<meta charset="UTF-8">
+<title>Sistema de Empréstimos</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Inter',sans-serif;
+}
+
+body{
+min-height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
+background:#f1f5f9;
+padding:20px;
+}
+
+/* CAIXA CENTRAL */
+.container{
+width:100%;
+max-width:900px;
+display:flex;
+background:white;
+border-radius:16px;
+overflow:hidden;
+box-shadow:0 10px 35px rgba(0,0,0,0.08);
+}
+
+/* LADO ESQUERDO */
+.left{
+flex:1;
+display:flex;
+flex-direction:column;
+justify-content:center;
+padding:60px;
+background:#2563eb;
+color:white;
+}
+
+.logo img{
+height:80px;
+width:auto;
+display:block;
+margin-bottom:30px;
+}
+
+.left h1{
+font-size:34px;
+margin-bottom:15px;
+}
+
+.left p{
+opacity:0.9;
+max-width:420px;
+line-height:1.6;
+}
+
+/* LADO DIREITO */
+.right{
+width:380px;
+display:flex;
+align-items:center;
+justify-content:center;
+padding:40px;
+}
+
+.login-box{
+width:100%;
+}
+
+.login-box h2{
+font-size:22px;
+margin-bottom:8px;
+}
+
+.subtitle{
+font-size:14px;
+color:#6b7280;
+margin-bottom:25px;
+}
+
+.input-group{
+margin-bottom:18px;
+}
+
+input{
+width:100%;
+padding:12px;
+border-radius:8px;
+border:1px solid #e5e7eb;
+font-size:14px;
+outline:none;
+}
+
+input:focus{
+border-color:#2563eb;
+}
+
+button{
+width:100%;
+padding:12px;
+border:none;
+border-radius:8px;
+background:#2563eb;
+color:white;
+font-weight:500;
+font-size:14px;
+cursor:pointer;
+transition:0.2s;
+}
+
+button:hover{
+background:#1d4ed8;
+}
+
+.footer{
+margin-top:20px;
+font-size:12px;
+color:#9ca3af;
+text-align:center;
+}
+
+/* ================================= */
+/* NOTEBOOKS PEQUENOS */
+/* ================================= */
+
+@media (max-width:1200px){
+
+.container{
+max-width:900px;
+}
+
+}
+
+/* ================================= */
+/* TABLETS */
+/* ================================= */
+
+@media (max-width:900px){
+
+.container{
+flex-direction:column;
+max-width:520px;
+}
+
+.left{
+padding:45px;
+text-align:center;
+}
+
+.logo img{
+margin:auto;
+margin-bottom:20px;
+}
+
+.left h1{
+font-size:28px;
+}
+
+.left p{
+margin:auto;
+}
+
+.right{
+width:100%;
+padding:40px;
+}
+
+}
+
+/* ================================= */
+/* CELULAR */
+/* ================================= */
+
+@media (max-width:600px){
+
+.container{
+flex-direction:column;
+max-width:420px;
+}
+
+.left{
+padding:30px 25px;
+text-align:center;
+}
+
+.logo img{
+margin:auto;
+margin-bottom:20px;
+height:65px;
+}
+
+.left h1{
+font-size:24px;
+}
+
+.left p{
+font-size:14px;
+}
+
+.right{
+width:100%;
+padding:25px;
+}
+
+.login-box h2{
+font-size:20px;
+}
+
+}
+
+/* ================================= */
+/* CELULAR DEITADO */
+/* ================================= */
+
+@media (max-width:900px) and (orientation:landscape){
+
+.container{
+flex-direction:row;
+max-width:720px;
+}
+
+.left{
+padding:30px;
+}
+
+.left h1{
+font-size:24px;
+}
+
+.left p{
+font-size:13px;
+}
+
+.logo img{
+height:60px;
+}
+
+.right{
+width:300px;
+padding:30px;
+}
+
+}
+
+/* ================================= */
+/* TELAS GRANDES */
+/* ================================= */
+
+@media (min-width:1600px){
+
+.container{
+max-width:1000px;
+}
+
+.left h1{
+font-size:38px;
+}
+
+.left p{
+font-size:17px;
+}
+
+.login-box h2{
+font-size:24px;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="left">
+
+<div class="logo">
+<img src="img/image.png" alt="Machado Admin">
+</div>
+
+<h1>Sistema de Empréstimos</h1>
+
+<p>
+Gerencie clientes, empréstimos e pagamentos
+de forma simples e organizada em um único painel.
+</p>
+
+</div>
+
+<div class="right">
+
+<div class="login-box">
+
+<h2>Entrar</h2>
+<p class="subtitle">Acesse o painel do sistema</p>
+
+<form id="loginForm">
+
+<div class="input-group">
+<input type="email" id="email" placeholder="Email" required>
+</div>
+
+<div class="input-group">
+<input type="password" id="senha" placeholder="Senha" required>
+</div>
+
+<button type="submit">
+Entrar
+</button>
+
+</form>
+
+<div class="footer">
+© 2026 MachadoAdmin
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/supabase.js"></script>
+
+<script>
+
+// se já estiver logado vai direto pro painel
+async function verificarSessao(){
+
+const { data } = await window.supabase.auth.getSession()
+
+if(data.session){
+
+window.location.href = "index.html"
+
+}
+
+}
+
+verificarSessao()
+
+const form = document.getElementById("loginForm")
+
+form.addEventListener("submit", async (e)=>{
+
+e.preventDefault()
+
+const email = document.getElementById("email").value
+const senha = document.getElementById("senha").value
+
+const { error } = await window.supabase.auth.signInWithPassword({
+
+email: email,
+password: senha
+
+})
+
+if(error){
+
+alert("Email ou senha incorretos")
+
+}else{
+
+window.location.href = "index.html"
+
+}
+
+})
+
+</script>
+
+<script src="js/logoff.js"></script>
+
+</body>
+</html>
