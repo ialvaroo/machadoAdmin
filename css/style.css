@@ -397,6 +397,7 @@ text-decoration:none;
 transition:0.5s;
 
 border: 2px solid;
+
 }
 
 /* ================================= */
@@ -721,6 +722,19 @@ margin-bottom:10px;
 border-radius:6px;
 }
 
+.acoes-topo .btn-verde{
+  width: 50vw;
+  gap: 7px;
+}
+
+.acoes-topo #pesquisa{
+  width: 60vw;
+}
+
+.acoes-topo{
+  gap: 5px;
+}
+
 /* LOGO */
 
 .logo{
@@ -773,6 +787,14 @@ padding:8px;
 width:100%;
 }
 
+#nome, #telefone{
+width: 80vw;
+}
+
+#valorPagamento{
+  font-size: 12px;
+}
+
 /* PESQUISA */
 
 #pesquisa,
@@ -794,6 +816,12 @@ font-size:13px;
 padding:9px;
 border-radius:5px;
 }
+
+/* .btn-azul, .btn-vermelho{
+  height: 20px;
+  font-size: 12px;
+  padding: 10px 10px 10px 10px;
+} */
 
 /* espaço entre botões */
 
@@ -855,6 +883,11 @@ gap:4px;
 }
 
 /* BOTÃO TOPO (SAIR) */
+
+
+.topo{
+ margin: 0;
+}
 
 .topo-direita button{
 width:auto;
@@ -919,3 +952,4 @@ margin-top: 0px;
 }
 
 }
+
