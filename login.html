@@ -1,8 +1,11 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
+
 <meta charset="UTF-8">
 <title>Sistema de Empréstimos</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
@@ -16,16 +19,18 @@ font-family:'Inter',sans-serif;
 }
 
 body{
-height:100vh;
+min-height:100vh;
 display:flex;
 align-items:center;
 justify-content:center;
 background:#f1f5f9;
+padding:20px;
 }
 
 /* CAIXA CENTRAL */
 .container{
-width:900px;
+width:100%;
+max-width:900px;
 display:flex;
 background:white;
 border-radius:16px;
@@ -40,10 +45,9 @@ display:flex;
 flex-direction:column;
 justify-content:center;
 padding:60px;
-background: #2563eb;
+background:#2563eb;
 color:white;
 }
-
 
 .logo img{
 height:80px;
@@ -135,12 +139,10 @@ text-align:center;
 @media (max-width:1200px){
 
 .container{
-width:95%;
 max-width:900px;
 }
 
 }
-
 
 /* ================================= */
 /* TABLETS */
@@ -178,31 +180,26 @@ padding:40px;
 
 }
 
-
 /* ================================= */
-/* CELULAR EM PÉ */
+/* CELULAR */
 /* ================================= */
 
 @media (max-width:600px){
 
-body{
-padding:20px;
-height:auto;
-
-display:flex;
-align-items:center;
-justify-content:center;
-}
-
 .container{
-width:100%;
+flex-direction:column;
 max-width:420px;
-margin:auto;
 }
 
 .left{
 padding:30px 25px;
 text-align:center;
+}
+
+.logo img{
+margin:auto;
+margin-bottom:20px;
+height:65px;
 }
 
 .left h1{
@@ -214,26 +211,25 @@ font-size:14px;
 }
 
 .right{
+width:100%;
 padding:25px;
 }
 
+.login-box h2{
+font-size:20px;
 }
 
+}
 
 /* ================================= */
-/* CELULAR DEITADO (LANDSCAPE) */
+/* CELULAR DEITADO */
 /* ================================= */
 
 @media (max-width:900px) and (orientation:landscape){
 
-body{
-padding:15px;
-}
-
 .container{
 flex-direction:row;
-max-width:750px;
-height:auto;
+max-width:720px;
 }
 
 .left{
@@ -253,12 +249,11 @@ height:60px;
 }
 
 .right{
-width:320px;
+width:300px;
 padding:30px;
 }
 
 }
-
 
 /* ================================= */
 /* TELAS GRANDES */
@@ -339,7 +334,6 @@ Entrar
 
 </div>
 
-
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="js/supabase.js"></script>
 
@@ -359,7 +353,6 @@ window.location.href = "index.html"
 }
 
 verificarSessao()
-
 
 const form = document.getElementById("loginForm")
 
